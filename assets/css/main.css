@@ -1,0 +1,95 @@
+body {
+  background-color: var(--pink);
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  max-width: 75ch;
+}
+
+h3, h2 {
+    margin-bottom: 0rem;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+@media screen and (min-width:768px) {
+    body {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width:1920px) {
+    body {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width:2304px) {
+    body {
+        width: 50%;
+    }
+}
+
+.main {
+    margin: 1vw;
+}
+
+@media screen and (min-width:768px) {
+    .main {
+        margin-top: 5rem;
+        margin-bottom: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.flag {
+    width: 2.3rem;
+    height: 1.7rem;
+    margin-right: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+img {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 5%;
+    margin-right: 2rem;
+}
+
+.footer {
+    padding: 1rem;
+    font-size: 0.75rem;
+    color: var(--nord4);
+    text-align: center;
+}
+
+.footer p {
+    line-height: 1rem;
+}
+
+.footer img {
+    width: unset;
+    height: unset;
+    margin: 0;
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+:root {
+  --white: #f8f7f6;
+  --pearl: #eae2da;
+  --wafer: #dbc6c0;
+  --brown: #a99b94;
+  --blue: #cbc9d4;
+  --pink: #f7b8c6;
+}

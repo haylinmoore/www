@@ -8,6 +8,13 @@ edition = "2021"
 [dependencies]
 axum = { version = "0.6.18", features = ["macros"] }
 chrono = "0.4.31"
+color-eyre = "0.6.2"
+env_logger = "0.10.1"
+log = "0.4.20"
 maud = { version = "0.25.0", features = ["axum"] }
+rand = "0.8.5"
 reqwest = "0.11.23"
+serde = { version = "1.0.194", features = ["derive"] }
+serde_json = "1.0.110"
 tokio = { version = "1.35.1", features = ["full"] }
+tower-http = { version = "0.4.1", features = ["fs"] }
