@@ -10,6 +10,8 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                              std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")),
                              std::env::var("CT").unwrap_or_else(|_| String::from("Unknown")),
                              );
+    let description = "Ezri's personal website";
+    let title = "Ezri's Website";
 
     html! {
         (maud::DOCTYPE)
@@ -21,8 +23,23 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                     link rel="stylesheet" href="/assets/css/main.css";
                     link rel="stylesheet" href="/assets/css/grids-responsive-min.css";
 
-                    title { "Ezri" };
+                    title { (title) };
+                    meta name="description" content=(description);
+                    meta name="author" content="Ezri";
+
+                    link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png";
+                    link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png";
+                    link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png";
+                    link rel="manifest" href="/assets/favicon/site.webmanifest";
+
+                    meta name="theme-color" content="#2e3440";
+
+                    meta property="og:type" content="website";
+                    meta property="og:title" content=(title);
+                    meta property="og:description" content=(description);
+                    meta property="og:theme-color" content="#f7b8c6";
                 }
+
                 body {
                     div class="main" {
                         (content);
@@ -49,6 +66,7 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                                 }
                                 img src="/assets/img/badges/aperture_labs.jpg" alt="aperture_labs";
                                 img src="/assets/img/badges/nb_noproblem.jpg" alt="nonbinary_noproblem";
+                                iframe src="//incr.easrng.net/badge?key=ezripet" style="background: url(//incr.easrng.net/bg.gif)" title="increment badge" width="88" height="31" frameborder="0" {};
                             }
 
                             p {

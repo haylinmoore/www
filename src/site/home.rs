@@ -31,7 +31,7 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
                 a href="https://en.pronouns.page/terminology#pansexual" {
                     img class="flag" src="/assets/img/Pansexual.webp" alt="Pansexual flag";
                 }
-                p { "I am a computer science major that runs a small hosting service with it's own ASN. I currently work in academia as a research assistant." }
+                p { "I am a computer science student that runs a small hosting service with it's own ASN. I currently work in academia as a research assistant." }
                 p { "This website is a more casual version of my " a href="https://ezrizhu.com" { "professional website" } "." }
             }
             div class="pure-u-1 pure-u-md-1-3" {
@@ -134,13 +134,13 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
                 p {
                     "Profile: " a href=(steam.profile_url) { (steam.persona_name) }
                     br;
-                    "Currently " (steam.persona_state)
+                    "Currently: " (steam.persona_state)
                         @if steam.is_gaming {
                             br;
-                            p { "Playing " a href=(steam.game_url) { (steam.game_extra_info) } }
+                            "Playing: " a href=(steam.game_url) { (steam.game_extra_info) }
                         };
                     br;
-                    "Last logoff " (steam.last_logoff)
+                    "Last log off: " (steam.last_logoff)
                 }
             }
         }
