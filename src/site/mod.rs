@@ -9,8 +9,8 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                              std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")),
                              std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")),
                              );
-    let description = "Ezri's personal website";
-    let title = "Ezri's Website";
+    let description = "Ezri's website";
+    let title = "Ezri";
 
     html! {
         (maud::DOCTYPE)
