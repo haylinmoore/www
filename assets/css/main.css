@@ -11,12 +11,39 @@ body {
   max-width: 75ch;
 }
 
+p {
+    margin-top: 0.5rem;
+}
+
+h1 {
+    margin-top: 0.5rem;
+}
+
 h3, h2 {
     margin-bottom: 0rem;
 }
 
 pre {
+    margin-top: 0.5rem;
     white-space: pre-wrap;
+}
+
+.hero-text {
+    order: 2;
+}
+
+.hero-img {
+    order: 1;
+}
+
+@media screen and (min-width:768px) {
+    .hero-text {
+        order: 1;
+    }
+
+    .hero-img {
+        order: 2;
+    }
 }
 
 @media screen and (min-width:768px) {

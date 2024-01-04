@@ -4,11 +4,10 @@ pub mod home;
 
 pub fn base(content: Markup, state: SiteState) -> Markup {
     let last_updated = state.last_updated.clone();
-    let build_info = format!("Built on: {} • Ref: {} • Commit: {} • CT: {}",
+    let build_info = format!("Built on: {} • Ref: {} • Commit: {}",
                              std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")),
                              std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")),
                              std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")),
-                             std::env::var("CT").unwrap_or_else(|_| String::from("Unknown")),
                              );
     let description = "Ezri's personal website";
     let title = "Ezri's Website";
@@ -32,7 +31,7 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                     link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png";
                     link rel="manifest" href="/assets/favicon/site.webmanifest";
 
-                    meta name="theme-color" content="#2e3440";
+                    meta name="theme-color" content="#f7b8c6";
 
                     meta property="og:type" content="website";
                     meta property="og:title" content=(title);
@@ -81,10 +80,6 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                                 "."
                                     br;
                                 (build_info);
-                                br;
-                                "Art by "
-                                a href="https://toyhou.se/StandbySnail" { "StandbySnail" } " and " 
-                                a href="https://v3ss33l.crd.co/" { "V3SS33L" }"."
                             }
                         }
                     }

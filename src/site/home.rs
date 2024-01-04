@@ -4,7 +4,7 @@ use tokio::sync::RwLock;
 use axum::extract::State;
 use crate::SiteState;
 use super::base;
-use rand::Rng;
+//use rand::Rng;
 
 pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
     let state = state.read().await;
@@ -13,17 +13,23 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
     let discord = state.discord.clone();
     let cloud = state.cloud.clone();
 
+    /*
     let mut rng = rand::thread_rng();
-    let img = if rng.gen() {
-        "ezri.webp"
-    } else {
-        "pixel.webp"
+    let (img, img_link, artist) = match rng.gen_range(0..3) {
+        0 => ("ezri.webp", "https://v3ss33l.crd.co/", "V3SS33L"),
+        1 => ("pixel.webp", "https://toyhou.se/StandbySnail", "StandbySnail"),
+        2 => ("blueberry.webp", "https://koiwypher.uwu.ai/#/", "Wypher"),
+        _ => unreachable!(),
     };
+    */
+
+    let (img, img_link, artist) = ("ezri.webp", "https://v3ss33l.crd.co/", "V3SS33L");
+
     let img = format!("/assets/img/{}", img);
 
     let content = html! {
         div class="pure-g hero" {
-            div class="pure-u-1 pure-u-md-2-3" {
+            div class="pure-u-1 pure-u-md-2-3 hero-text" {
                 h1 { "Ezri (they/any)" }
                 a href="https://en.pronouns.page/terminology#nonbinary" {
                     img class="flag" src="/assets/img/Nonbinary.webp" alt="Nonbinary flag";
@@ -34,8 +40,11 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
                 p { "I am a computer science student that runs a small hosting service with it's own ASN. I currently work in academia as a research assistant." }
                 p { "This website is a more casual version of my " a href="https://ezrizhu.com" { "professional website" } "." }
             }
-            div class="pure-u-1 pure-u-md-1-3" {
-                img class="pure-img" src=(img) alt="Ezri's avatar";
+            div class="pure-u-1 pure-u-md-1-3 hero-img" {
+                a href="https://toyhou.se/finnekit" {
+                    img class="pure-img" src=(img) alt="Ezri's avatar";
+                }
+                p { "Art by " a href=(img_link) { (artist) } "." }
             }
         }
 
