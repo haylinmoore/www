@@ -66,6 +66,9 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                                 }
                                 img src="/assets/img/badges/xenia-now.gif" alt="xenia-now";
                                 img src="/assets/img/badges/vimlove.gif" alt="vim";
+                                a target="_blank" href="https://infernocomms.com" {
+                                    img src="/assets/img/badges/infernocomms.png" alt="Inferno Communications";
+                                }
                                 a target="_blank" href="https://xenyth.net/" {
                                     img src="/assets/img/badges/xenyth.png" alt="xenyth cloud";
                                 }
