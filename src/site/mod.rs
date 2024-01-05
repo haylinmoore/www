@@ -72,7 +72,7 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                                 img src="/assets/img/badges/aperture_labs.jpg" alt="aperture_labs";
                                 img src="/assets/img/badges/nb_noproblem.jpg" alt="nonbinary_noproblem";
                                 a target="_blank" href="https://www.mabsland.com/Adoption.html" {
-                                    img src="/assets/img/badges/Censor_PGc.gif" alt="Censorship Panda: PG";
+                                    img src="/assets/img/badges/Censor_PGc.gif" alt="Censorship Panda: PG" style="height: 31px";
                                 }
                                 iframe src="//incr.easrng.net/badge?key=ezripet" style="background: url(//incr.easrng.net/bg.gif)" title="increment badge" width="88" height="31" frameborder="0" {};
                             }
