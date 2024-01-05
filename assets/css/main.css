@@ -103,6 +103,7 @@ img {
 }
 
 .footer img {
+    border-radius: 0;
     width: unset;
     height: unset;
     margin: 0;
