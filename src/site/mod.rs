@@ -58,6 +58,9 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                                 a href="https://adryd.com/" {
                                     img src="/assets/img/badges/adryd.png" alt="adryd";
                                 }
+                                a href="https://joscomputing.space/" {
+                                    img src="/assets/img/badges/spotlight.gif" alt="adryd";
+                                }
                                 a href="https://tilde.town/" {
                                     img src="/assets/img/badges/tildetownpink.gif" alt="tilde.town";
                                 }
