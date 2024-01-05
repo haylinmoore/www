@@ -79,16 +79,15 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
 
                             p {
                                 "Auto refreshed: " (last_updated)
-                                    br;
+                                br;
                                 "Source code "
                                 a target="_blank" href="https://github.com/ezrizhu/www2" { "available here" }
+                                ", released under the "
+                                a target="_blank" href="https://github.com/ezrizhu/www2/blob/main/COPYING" { "GNU AGPLv3 license" }
                                 br;
                                 "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
-                                    br;
-                                ", released under the "
-                                    a target="_blank" href="https://github.com/ezrizhu/www2/blob/main/COPYING" { "GNU AGPLv3 license" }
                                 "."
-                                    br;
+                                br;
                                 (build_info);
                             }
                         }
