@@ -90,8 +90,8 @@ async fn main() {
             if let Err(e) = update::update(cloned_state.clone()).await {
                 error!("Error updating: {}", e);
             };
-            // wait 2 mins
-            tokio::time::sleep(tokio::time::Duration::from_secs(120)).await;
+            // wait 1 min
+            tokio::time::sleep(tokio::time::Duration::from_secs(60)).await;
         }
     });
 

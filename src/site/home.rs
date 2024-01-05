@@ -31,20 +31,20 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
         div class="pure-g hero" {
             div class="pure-u-1 pure-u-md-2-3 hero-text" {
                 h1 { "Ezri (they/any)" }
-                a href="https://en.pronouns.page/terminology#nonbinary" {
+                a target="_blank" href="https://en.pronouns.page/terminology#nonbinary" {
                     img class="flag" src="/assets/img/Nonbinary.webp" alt="Nonbinary flag";
                 }
-                a href="https://en.pronouns.page/terminology#pansexual" {
+                a target="_blank" href="https://en.pronouns.page/terminology#pansexual" {
                     img class="flag" src="/assets/img/Pansexual.webp" alt="Pansexual flag";
                 }
                 p { "I am a computer science student that runs a small hosting service with it's own ASN. I currently work in academia as a research assistant." }
-                p { "This website is a more casual version of my " a href="https://ezrizhu.com" { "professional website" } "." }
+                p { "This website is a more casual version of my " a target="_blank" href="https://ezrizhu.com" { "professional website" } "." }
             }
             div class="pure-u-1 pure-u-md-1-3 hero-img" {
-                a href="https://toyhou.se/finnekit" {
+                a target="_blank" href="https://toyhou.se/finnekit" {
                     img class="pure-img" src=(img) alt="Ezri's avatar";
                 }
-                p { "Art by " a href=(img_link) { (artist) } "." }
+                p { "Art by " a target="_blank" href=(img_link) { (artist) } "." }
             }
         }
 
@@ -54,27 +54,27 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
             div class="pure-u-1 pure-u-md-1-2" {
                 p {
                     b { "Fediverse: " }
-                    a href="https://sleepless.cafe/ezri" {
+                    a target="_blank" href="https://sleepless.cafe/ezri" {
                         "@ezri@sleepless.cafe"
                     }
                     br;
                     b { "Matrix: " }
-                    a href="https://matrix.to/#/@ezri:envs.net" {
+                    a target="_blank" href="https://matrix.to/#/@ezri:envs.net" {
                         "@ezri:envs.net"
                     }
                     br;
                     b { "Twitter: " }
-                    a href="https://twitter.com/finnekit" {
+                    a target="_blank" href="https://twitter.com/finnekit" {
                         "@finnekit"
                     }
                     br;
                     b { "BSky: " }
-                    a href="https://bsky.app/profile/ezrizhu.com" {
+                    a target="_blank" href="https://bsky.app/profile/ezrizhu.com" {
                         "@ezrizhu.com"
                     }
                     br;
                     b { "GitHub: "}
-                    a href="https://github.com/ezrizhu" {
+                    a target="_blank" href="https://github.com/ezrizhu" {
                         "@ezrizhu"
                     }
                 }
@@ -85,17 +85,17 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
                     "NYC"
                         br;
                     b { "Email: " }
-                    a href="mailto:me@ezri.pet" {
+                    a target="_blank" href="mailto:me@ezri.pet" {
                         "me@ezri.pet"
                     }
                     br;
                     b { "pronouns.page: " }
-                    a href="https://en.pronouns.page/@finnekit" {
+                    a target="_blank" href="https://en.pronouns.page/@finnekit" {
                         "@finnekit"
                     }
                     br;
                     b { "Telegram: " }
-                    a href="https://t.me/finnekit" {
+                    a target="_blank" href="https://t.me/finnekit" {
                         "@finnekit"
                     }
                     br;
@@ -141,12 +141,12 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
             div class="pure-u-1 pure-u-md-1-2" {
                 h3 { "Steam" }
                 p {
-                    "Profile: " a href=(steam.profile_url) { (steam.persona_name) }
+                    "Profile: " a target="_blank" href=(steam.profile_url) { (steam.persona_name) }
                     br;
                     "Currently: " (steam.persona_state)
                         @if steam.is_gaming {
                             br;
-                            "Playing: " a href=(steam.game_url) { (steam.game_extra_info) }
+                            "Playing: " a target="_blank" href=(steam.game_url) { (steam.game_extra_info) }
                         };
                     br;
                     "Last log off: " (steam.last_logoff)

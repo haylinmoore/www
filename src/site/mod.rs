@@ -46,41 +46,44 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                             div class="badges" {
                                 img src="/assets/img/badges/ezri.png" alt="Ezri";
                                 img src="/assets/img/badges/ezricloud.png" alt="EzriCloud";
-                                a href="https://kate.pet" { 
+                                a target="_blank" href="https://kate.pet" { 
                                     img src="/assets/img/badges/kate.gif" alt="kate.pet";
                                 }
-                                a href="https://easrng.net" {
+                                a target="_blank" href="https://easrng.net" {
                                     img src="/assets/img/badges/easrng.gif" alt="easrng";
                                 }
-                                a href="https://s-mith.github.io/awfulwebsite/" {
+                                a target="_blank" href="https://s-mith.github.io/awfulwebsite/" {
                                     img src="/assets/img/badges/lily.gif" alt="lily";
                                 }
-                                a href="https://adryd.com/" {
+                                a target="_blank" href="https://adryd.com/" {
                                     img src="/assets/img/badges/adryd.png" alt="adryd";
                                 }
-                                a href="https://joscomputing.space/" {
+                                a target="_blank" href="https://joscomputing.space/" {
                                     img src="/assets/img/badges/spotlight.gif" alt="adryd";
                                 }
-                                a href="https://tilde.town/" {
+                                a target="_blank" href="https://tilde.town/" {
                                     img src="/assets/img/badges/tildetownpink.gif" alt="tilde.town";
                                 }
                                 img src="/assets/img/badges/xenia-now.gif" alt="xenia-now";
                                 img src="/assets/img/badges/vimlove.gif" alt="vim";
-                                a href="https://xenyth.net/" {
+                                a target="_blank" href="https://xenyth.net/" {
                                     img src="/assets/img/badges/xenyth.png" alt="xenyth cloud";
                                 }
                                 img src="/assets/img/badges/aperture_labs.jpg" alt="aperture_labs";
                                 img src="/assets/img/badges/nb_noproblem.jpg" alt="nonbinary_noproblem";
+                                a target="_blank" href="https://www.mabsland.com/Adoption.html" {
+                                    img src="/assets/img/badges/Censor_PGc.gif" alt="Censorship Panda: PG";
+                                }
                                 iframe src="//incr.easrng.net/badge?key=ezripet" style="background: url(//incr.easrng.net/bg.gif)" title="increment badge" width="88" height="31" frameborder="0" {};
                             }
 
                             p {
                                 "Auto refreshed: " (last_updated)
                                     br;
-                                    "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
-                                    br;
                                 "Source code "
                                     a target="_blank" href="https://github.com/ezrizhu/www2" { "available here" }
+                                "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
+                                    br;
                                 ", released under the "
                                     a target="_blank" href="https://github.com/ezrizhu/www2/blob/main/COPYING" { "GNU AGPLv3 license" }
                                 "."
