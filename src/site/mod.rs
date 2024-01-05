@@ -81,7 +81,8 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                                 "Auto refreshed: " (last_updated)
                                     br;
                                 "Source code "
-                                    a target="_blank" href="https://github.com/ezrizhu/www2" { "available here" }
+                                a target="_blank" href="https://github.com/ezrizhu/www2" { "available here" }
+                                br;
                                 "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
                                     br;
                                 ", released under the "
