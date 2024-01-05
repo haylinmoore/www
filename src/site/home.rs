@@ -54,27 +54,27 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
             div class="pure-u-1 pure-u-md-1-2" {
                 p {
                     b { "Fediverse: " }
-                    a target="_blank" href="https://sleepless.cafe/ezri" {
+                    a rel="me" target="_blank" href="https://sleepless.cafe/ezri" {
                         "@ezri@sleepless.cafe"
                     }
                     br;
                     b { "Matrix: " }
-                    a target="_blank" href="https://matrix.to/#/@ezri:envs.net" {
+                    a rel="me" target="_blank" href="https://matrix.to/#/@ezri:envs.net" {
                         "@ezri:envs.net"
                     }
                     br;
                     b { "Twitter: " }
-                    a target="_blank" href="https://twitter.com/finnekit" {
+                    a rel="me" target="_blank" href="https://twitter.com/finnekit" {
                         "@finnekit"
                     }
                     br;
                     b { "BSky: " }
-                    a target="_blank" href="https://bsky.app/profile/ezrizhu.com" {
+                    a rel="me" target="_blank" href="https://bsky.app/profile/ezrizhu.com" {
                         "@ezrizhu.com"
                     }
                     br;
                     b { "GitHub: "}
-                    a target="_blank" href="https://github.com/ezrizhu" {
+                    a rel="me" target="_blank" href="https://github.com/ezrizhu" {
                         "@ezrizhu"
                     }
                 }
