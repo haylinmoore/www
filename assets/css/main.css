@@ -104,8 +104,8 @@ img {
 
 .footer img {
     border-radius: 0;
-    width: unset;
-    height: unset;
+    width: 88px;
+    height: 31px;
     margin: 0;
     image-rendering: auto;
     image-rendering: crisp-edges;
