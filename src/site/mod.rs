@@ -44,8 +44,12 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                         (content);
                         div class="footer" {
                             div class="badges" {
-                                img src="/assets/img/badges/ezri.png" alt="Ezri";
-                                img src="/assets/img/badges/ezricloud.png" alt="EzriCloud";
+                                a target="_blank" href="https://ezri.pet" { 
+                                    img src="/assets/img/badges/ezri.png" alt="Ezri";
+                                }
+                                a target="_blank" href="https://as206628.net" { 
+                                    img src="/assets/img/badges/ezricloud.png" alt="EzriCloud";
+                                }
                                 a target="_blank" href="https://kate.pet" { 
                                     img src="/assets/img/badges/kate.gif" alt="kate.pet";
                                 }
