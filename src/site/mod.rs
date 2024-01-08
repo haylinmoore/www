@@ -99,7 +99,6 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                                 a target="_blank" href="https://github.com/ezrizhu/www2/blob/main/COPYING" { "GNU AGPLv3 license" }
                                 br;
                                 "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
-                                "."
                                 br;
                                 (build_info);
                             }
