@@ -59,6 +59,9 @@ pub fn base(content: Markup, state: SiteState) -> Markup {
                                 a target="_blank" href="https://s-mith.github.io/awfulwebsite/" {
                                     img src="/assets/img/badges/lily.gif" alt="lily";
                                 }
+                                a target="_blank" href="https://graydenn.wtf/" {
+                                    img src="/assets/img/badges/graydenn.png" alt="graydenn";
+                                }
                                 a target="_blank" href="https://adryd.com/" {
                                     img src="/assets/img/badges/adryd.png" alt="adryd";
                                 }
