@@ -8,6 +8,7 @@ ENV COMMIT=${COMMIT}
 ENV REF=${REF}
 ENV TIME=${TIME}
 ENV CT=${CT}
+ENV TZ="America/New_York"
 
 ADD . .
 
