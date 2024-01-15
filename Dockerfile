@@ -14,4 +14,4 @@ ADD . .
 
 RUN cargo build --release
 
-CMD ["./target/release/www2"]
+CMD ["./target/release/www"]

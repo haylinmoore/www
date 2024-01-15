@@ -6,50 +6,21 @@ use axum::{
     routing::{get, get_service},
     Router
 };
-use serde::{Deserialize, Serialize};
 use tower_http::services::ServeDir;
 mod site;
 mod update;
+mod utils;
+mod things;
 
 async fn health() -> Html<String> {
     Html(String::from("OK"))
 }
 
-#[derive(Clone, Deserialize, Serialize)]
-pub struct Steam {
-    persona_state: String,
-    persona_name: String,
-    profile_url: String,
-    avatar: String,
-    last_logoff: String,
-    is_gaming: bool,
-    game_extra_info: String,
-    game_url: String,
-}
-
-#[derive(Clone, Deserialize, Serialize)]
-pub struct Discord {
-    status_desk: String,
-    status_web: String,
-    status_mobile: String,
-    custom_status: String,
-    status_emoji: String,
-    updated_at: String,
-}
-
-#[derive(Clone, Deserialize, Serialize)]
-pub struct Cloud {
-    is_down: bool,
-    down_since: String,
-}
 
 #[derive(Clone)]
 pub struct SiteState {
-    workstation: String,
     last_updated: String,
-    steam: Steam,
-    discord: Discord,
-    cloud: Cloud,
+    things: Vec<things::Thing>,
 }
 
 #[tokio::main]
@@ -57,31 +28,11 @@ async fn main() {
     env_logger::init();
     info!("Starting up!");
 
+    let things = things::read_things_from_file("content/things.csv").expect("Failed to read things");
+
     let state = Arc::new(RwLock::new(SiteState {
-        workstation: String::from(""),
         last_updated: String::from(""),
-        steam: Steam {
-            persona_state: String::from(""),
-            persona_name: String::from(""),
-            profile_url: String::from(""),
-            avatar: String::from(""),
-            last_logoff: String::from(""),
-            is_gaming: false,
-            game_extra_info: String::from(""),
-            game_url: String::from(""),
-        },
-        discord: Discord {
-            status_desk: String::from(""),
-            status_web: String::from(""),
-            status_mobile: String::from(""),
-            custom_status: String::from(""),
-            status_emoji: String::from(""),
-            updated_at: String::from(""),
-        },
-        cloud: Cloud {
-            is_down: false,
-            down_since: String::from(""),
-        },
+        things,
     }));
 
     let cloned_state = Arc::clone(&state);

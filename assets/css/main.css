@@ -1,14 +1,19 @@
 body {
-  background-color: var(--pink);
+  background-color: var(--background-color);
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
-  color: black;
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
   max-width: 75ch;
+}
+
+a {
+    color:var(--container-backdrop);
+    text-decoration:none
 }
 
 p {
@@ -113,11 +118,52 @@ img {
     image-rendering: -webkit-optimize-contrast;
 }
 
-:root {
-  --white: #f8f7f6;
-  --pearl: #eae2da;
-  --wafer: #dbc6c0;
-  --brown: #a99b94;
-  --blue: #cbc9d4;
-  --pink: #f7b8c6;
+.section {
+    background-color: var(--container-bg);
+    box-shadow: 16px 16px var(--container-backdrop);
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-bottom: 4em;
 }
+
+:root{
+    --background-color: #19191e;
+    --container-bg: #302D33;
+    --container-header-bg: var(--container-bg);
+    --container-header-color: #fafafa;
+    --container-backdrop: #04A7E7;
+    --text-color: #fafafa
+}
+body[colorscheme="purple"]{
+    --background-color: #19191e;
+    --container-bg: #242432;
+    --container-header-bg: var(--container-bg);
+    --container-header-color: #fafafa;
+    --container-backdrop: #9b5efd;
+    --text-color: #fafafa
+}
+body[colorscheme="red"]{
+    --background-color: #191516;
+    --container-bg: #2a2432;
+    --container-header-bg: var(--container-bg);
+    --container-header-color: #fafafa;
+    --container-backdrop: #ff5757;
+    --text-color: #fafafa
+}
+body[colorscheme="pink"]{
+    --background-color: #19191e;
+    --container-bg: #2e2833;
+    --container-header-bg: var(--container-bg);
+    --container-header-color: #fafafa;
+    --container-backdrop: #ffa7d1;
+    --text-color: #fafafa
+}
+body[colorscheme="white"]{
+    --background-color: #282626;
+    --container-bg: #fafafa;
+    --container-header-bg: var(--container-bg);
+    --container-header-color: #191919;
+    --container-backdrop: #000000;
+    --text-color: #191919
+}
+

@@ -1,5 +1,5 @@
 [package]
-name = "www2"
+name = "www"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,7 +9,9 @@ edition = "2021"
 axum = { version = "0.6.18", features = ["macros"] }
 chrono = "0.4.31"
 color-eyre = "0.6.2"
+comrak = "0.20.0"
 env_logger = "0.10.1"
+kuchiki = "0.8.1"
 log = "0.4.20"
 maud = { version = "0.25.0", features = ["axum"] }
 rand = "0.8.5"
