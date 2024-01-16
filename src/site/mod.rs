@@ -5,7 +5,7 @@ pub mod words;
 pub mod things;
 
 pub fn base(title: String, content: Markup, state: SiteState) -> Markup {
-    let last_updated = state.last_updated.clone();
+    // let last_updated = state.last_updated.clone();
     let build_info = format!("Built on: {} • Ref: {} • Commit: {}",
                              std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")),
                              std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")),
@@ -83,12 +83,12 @@ pub fn base(title: String, content: Markup, state: SiteState) -> Markup {
                             }
 
                             p {
-                                "Auto refreshed: " (last_updated)
-                                br;
+                                // "Auto refreshed: " (last_updated)
+                                // br;
                                 "Source code "
                                 a target="_blank" href="https://github.com/hamptonmoore/www" { "available here" }
                                 ", released under the "
-                                a target="_blank" href="https://github.com/ezrizhu/www/blob/main/COPYING" { "GNU AGPLv3 license" }
+                                a target="_blank" href="https://github.com/hamptonmoore/www/blob/main/COPYING" { "GNU AGPLv3 license" }
                                 br;
                                 "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
                                 br;
