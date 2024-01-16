@@ -28,17 +28,6 @@ async fn health() -> Html<String> {
 pub struct ClientState {
     pub theme: String,
 }
-// use axum::extract::FromRef;
-
-// impl FromRef<Arc<RwLock<SiteState>>> for ClientState {
-//     fn from_ref(_: &Arc<RwLock<SiteState>>) -> Self {
-//         // Your logic to extract or construct ClientState from SiteState
-//         // For example:
-//         ClientState {
-//             theme: "default_theme".to_string(),
-//         }
-//     }
-// }
 
 #[derive(Clone)]
 pub struct SiteState {

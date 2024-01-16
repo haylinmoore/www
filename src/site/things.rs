@@ -21,7 +21,7 @@ pub async fn index(
                     @for thing in things.clone() {
                         li {
                             (thing.date.format("%Y-%m-%d").to_string()) ": "
-                            a href=(thing.link) { (thing.title) }
+                            a target="_blank" href=(thing.link) { (thing.title) }
                             @if let Some(description) = &thing.description {
                                 " - "
                                 (description)

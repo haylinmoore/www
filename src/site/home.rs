@@ -25,7 +25,7 @@ pub async fn home(
 
     let content = html! {
         div class="pure-g hero section" style="position: relative" {
-            div class="pure-u-1 pure-u-md-2-3 hero-text" {
+            div class="pure-u-1 pure-u-md-2-3 hero-text" style="margin-bottom: 32px;" {
                 h1 { "Hampton Moore" }
                 p {
                     "I am an network automations engineer, software developer, and student (CS BS @ UMass Amherst).
@@ -41,11 +41,11 @@ pub async fn home(
                 img class="pure-img" src="/assets/img/hammy.png" alt="Hampton's avatar";
             }
             div class="themecolors" {
-                div style="background-color: #ff5757" theme="red" {}
-                div style="background-color: #9b5efd" theme="purple" {}
-                div style="background-color: #fafafa; box-sizing: border-box;" theme="white" {}
-                div style="background-color: #ffa7d1" theme="pink" {}
                 div style="background-color: #04a7e7" theme="blue" {}
+                div style="background-color: #ffa7d1" theme="pink" {}
+                div style="background-color: #fafafa; box-sizing: border-box;" theme="white" {}
+                div style="background-color: #9b5efd" theme="purple" {}
+                div style="background-color: #ff5757" theme="red" {}
             }
             script type="text/javascript" {
                (PreEscaped("
@@ -65,7 +65,7 @@ pub async fn home(
                     @for thing in things.clone() {
                         li {
                             (thing.date.format("%Y-%m").to_string()) ": "
-                            a href=(thing.link) { (thing.title) }
+                            a target="_blank" href=(thing.link) { (thing.title) }
                             @if let Some(description) = &thing.description {
                                 " - "
                                 (description)
