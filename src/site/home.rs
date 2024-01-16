@@ -12,7 +12,9 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
     let things = state.things[0..5].to_vec();
     let words: Vec<Post>;
 
-    if state.words.len() > 5 {
+    let word_count = state.words.len();
+
+    if word_count > 5 {
         words = state.words[0..5].to_vec();
     } else {
         words = state.words.clone();
@@ -62,10 +64,15 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
                     @for post in words {
                         li { 
                             (post.date.format("%Y").to_string()) " "
-                            a href=(post.slug) { (post.title) }
+                            a href=(post.link) { (post.title) }
                             ": "
                             (post.description)
                         };
+                    }
+                    @if word_count > 5 {
+                        li {
+                            a href="/posts/" { "See more words" }
+                        }
                     }
                 }
             }

@@ -34,5 +34,5 @@ pub async fn index(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
         }
     };
 
-    base("Home".to_owned(), content, state.clone())
+    base("Things".to_owned(), content, state.clone())
 }

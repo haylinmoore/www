@@ -11,6 +11,7 @@ pub fn path_to_html(path: &str) -> String {
 
 pub fn md_to_html(md: &str) -> String {
     let mut options = ComrakOptions::default();
+    options.render.unsafe_ = true;
     options.parse.smart = true;
     let md = markdown_to_html(&md, &options);
     let md = add_target_blank_to_links(md);

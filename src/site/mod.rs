@@ -63,13 +63,16 @@ pub fn base(title: String, content: Markup, state: SiteState) -> Markup {
                                 a target="_blank" href="https://umass.edu" {
                                     img src="/assets/img/badges/umass.gif" alt="umass";
                                 }
-                                a target="_blank" href="https://ezri.pet" { 
+                                a target="_blank" href="https://ezrizhu.com/" { 
                                     img src="/assets/img/badges/ezri.png" alt="Ezri";
                                 }
                                 img src="/assets/img/badges/aperture_labs.jpg" alt="aperture_labs";
                                 img src="/assets/img/badges/gothtml.png" alt="gothtml";
                                 a target="_blank" href="https://arc.net/gift/73b9fff4" {
                                     img src="/assets/img/badges/arc.gif" alt="arc";
+                                }
+                                a target="_blank" href="https://open.spotify.com/playlist/0tEjCoXGaAOH45dTTVvwWl" {
+                                    img src="/assets/img/badges/tf.gif" alt="trans-fem hyperpop";
                                 }
                                 a target="_blank" href="https://code.visualstudio.com" {
                                     img src="/assets/img/badges/vscode.gif" alt="vscode";

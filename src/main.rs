@@ -56,6 +56,7 @@ async fn main() {
         .nest_service("/assets", get_service(ServeDir::new("./assets")))
         .route("/health", get(health))
         .route("/posts/", get(site::words::index))
+        .route("/posts/:slug", get(site::words::post))
         .route("/things/", get(site::things::index))
         .route("/", get(site::home::home))
         .with_state(state);

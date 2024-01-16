@@ -5,7 +5,7 @@ use gray_matter::engine::YAML;
 use chrono::prelude::*;
 
 #[derive(Clone)]
-enum PostType {
+pub enum PostType {
     Post,
     Link,
 }
@@ -13,6 +13,7 @@ enum PostType {
 #[derive(Clone)]
 pub struct Post {
     pub slug: String,
+    pub link: String,
     pub title: String,
     pub date: DateTime<FixedOffset>,
     pub description: String,
@@ -78,15 +79,15 @@ pub fn init(dir: &str) -> Vec<Post> {
                 let link = result_map.get("link").map(|s| s.as_string().unwrap());
 
                 if let Some(link) = link {
-                    let post = Post { slug: link, title, date, description, tags, r#type: PostType::Link, body: "".to_string() };
+                    let post = Post { slug: link.clone(), link, title, date, description, tags, r#type: PostType::Link, body: "".to_string() };
                     posts_list.push(post);
                     continue;
                 }
 
                 // the markdown without the frontmatter, parsed to html
                 let body = utils::md_to_html(&result.content);
-
-                let post = Post { slug: format!("/posts/{}",  filename.replace(".md", "")), title, date, description, tags, body, r#type: PostType::Post };
+                let slug = filename.replace(".md", "");
+                let post = Post { link: format!("/posts/{}",  slug), slug, title, date, description, tags, body, r#type: PostType::Post };
                 posts_list.push(post);
             }
         }

@@ -10,6 +10,7 @@ date,link,title,description
 2022-09-10,https://github.com/hamptonmoore/minecraft-oauth,Minecraft Oauth,secure a minecraft server using oauth
 2022-09-05,https://github.com/hamptonmoore/jinja-bf,Brainfuck Interpreter written in Jinja,to solve a debate at work
 2022-10-25,https://gaia.cs.umass.edu/~hrmoore/major_breakdown/,UMass Major Breakdown,explore student counts by major
+2023-02-23,https://github.com/aristanetworks/telegraf-cloudvision,Telegraf Cloudvision,streaming Cloudvison data to Telegraf
 2023-02-24,https://github.com/hamptonmoore/bgp.exposed,bgp.exposed,a go based bgp filter tester
 2023-06-13,https://hamy.cc/cities/,Cities,can you name enough US cities?
 2023-08-04,https://github.com/hamptonmoore/nornir-pyavd,Nornir-PyAVD,using nornir with Arista's PyAVD

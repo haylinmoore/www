@@ -1,7 +1,6 @@
 ---
 title: AI Recolors New Mexico State Flag
 description: using a neural network to find the perfect color scheme
-type: post
 date: 2018-10-18
 tags:
     - machine-learning
@@ -18,15 +17,16 @@ It is super simple. First, it generates 2 random colors, then renders it onto th
 
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 1200 800" style="max-width: 100%;">
-    <rect class="flag" fill="#fff700" width="1200" height="800" />
-    <g transform="translate(600,400)" stroke="#bf0a30" class="star">
+    <rect class="nm_flag" fill="#fff700" width="1200" height="800" />
+    <g transform="translate(600,400)" stroke="#bf0a30" class="nm_star">
         <path id="lin"
             d="M157.344,38.2812H-157.344M191.375,12.75H-191.375M191.375-12.75H-191.375M157.344-38.2812H-157.344"
             stroke-width="17" stroke-linecap="round" />
         <use transform="rotate(90)" xlink:href="#lin" />
-        <circle class="flag" fill="#ffd700" r="64.3125" stroke-width="10.625" />
+        <circle class="nm_flag" fill="#ffd700" r="64.3125" stroke-width="10.625" />
     </g>
 </svg>
+<br>
 <button onclick="rank(1)">Love It</button>
 <button onclick="rank(0.4)">Like it</button>
 <button onclick="rank(0.1)">Meh</button>
@@ -79,7 +79,7 @@ It is super simple. First, it generates 2 random colors, then renders it onto th
     }
 
     function setStarColor(color) {
-        document.getElementsByClassName("star")[0].style.stroke = `rgb(${color[0]*255},${color[1]*255},${color[2]*255})`;
+        document.getElementsByClassName("nm_star")[0].style.stroke = `rgb(${color[0]*255},${color[1]*255},${color[2]*255})`;
     }
 
     function updateUser(data) {
@@ -87,8 +87,8 @@ It is super simple. First, it generates 2 random colors, then renders it onto th
     }
 
     function setFlagColor(color) {
-        document.getElementsByClassName("flag")[0].style.fill = `rgb(${color[0]*255},${color[1]*255},${color[2]*255})`;
-        document.getElementsByClassName("flag")[1].style.fill = `rgb(${color[0]*255},${color[1]*255},${color[2]*255})`;
+        document.getElementsByClassName("nm_flag")[0].style.fill = `rgb(${color[0]*255},${color[1]*255},${color[2]*255})`;
+        document.getElementsByClassName("nm_flag")[1].style.fill = `rgb(${color[0]*255},${color[1]*255},${color[2]*255})`;
     }
 
     var colors = [0.74901960784, 0.03921568627, 0.18823529412, 1, 0.8431372549, 0];
