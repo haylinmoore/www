@@ -3,13 +3,20 @@ use std::sync::Arc;
 use tokio::sync::RwLock;
 use axum::extract::State;
 use crate::SiteState;
+use crate::words::{get, Post};
 use super::base;
-//use rand::Rng;
 
 pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
     let state = state.read().await;
 
-    let things = state.things.clone();
+    let things = state.things[0..5].to_vec();
+    let words: Vec<Post>;
+
+    if state.words.len() > 5 {
+        words = state.words[0..5].to_vec();
+    } else {
+        words = state.words.clone();
+    }
 
     let content = html! {
         div class="pure-g hero section" {
@@ -17,8 +24,12 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
                 h1 { "Hampton Moore" }
                 p {  
                     "I am an network automations engineer, software developer, and student (CS BS @ UMass Amherst).
-                    Since Summer 2022 I have been working at Arista Networks focusing on how to make network automation easier to use and integrate with existing systems.
-                    In my free-time I run AS923 and provide virtual hosting for a few projects."
+                    Since Summer 2022 I have been working at "
+                    a href="https://arista.com" target = "_blank" { "Arista Networks" }
+                    " focusing on how to make network automation easier to use and integrate with existing systems.
+                    In my free-time I run "
+                    a href="https://bgp.tools/as/923" target = "_blank" { "AS923" }
+                    " and provide virtual hosting for a few projects."
                 }
             }
             div class="pure-u-1 pure-u-md-1-3 hero-img" {
@@ -32,7 +43,7 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
                 ul {
                     @for thing in things.clone() {
                         li { 
-                            span { (thing.date.format("%Y-%m-%d").to_string()) " - "}
+                            (thing.date.format("%Y-%m").to_string()) ": "
                             a href=(thing.link) { (thing.title) }
                             @if let Some(description) = &thing.description {
                                 " - "
@@ -40,19 +51,20 @@ pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
                             }
                         };
                     }
+                    li {
+                        a href="/things/" { "See more things" }
+                    }
                 }
             }
             div class="pure-u-1 pure-u-md-1-2" {
                 h3 { "Words I've Written" }
                 ul {
-                    @for thing in things {
+                    @for post in words {
                         li { 
-                            span { (thing.date.format("%Y-%m-%d").to_string()) " - "}
-                            a href=(thing.link) { (thing.title) }
-                            @if let Some(description) = &thing.description {
-                                " - "
-                                (description)
-                            }
+                            (post.date.format("%Y").to_string()) " "
+                            a href=(post.slug) { (post.title) }
+                            ": "
+                            (post.description)
                         };
                     }
                 }

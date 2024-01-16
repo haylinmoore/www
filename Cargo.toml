@@ -11,6 +11,7 @@ chrono = "0.4.31"
 color-eyre = "0.6.2"
 comrak = "0.20.0"
 env_logger = "0.10.1"
+gray_matter = "0.2.6"
 kuchiki = "0.8.1"
 log = "0.4.20"
 maud = { version = "0.25.0", features = ["axum"] }

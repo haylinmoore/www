@@ -6,11 +6,13 @@ use axum::{
     routing::{get, get_service},
     Router
 };
+
 use tower_http::services::ServeDir;
 mod site;
 mod update;
 mod utils;
 mod things;
+mod words;
 
 async fn health() -> Html<String> {
     Html(String::from("OK"))
@@ -21,6 +23,7 @@ async fn health() -> Html<String> {
 pub struct SiteState {
     last_updated: String,
     things: Vec<things::Thing>,
+    words: Vec<words::Post>,
 }
 
 #[tokio::main]
@@ -28,11 +31,14 @@ async fn main() {
     env_logger::init();
     info!("Starting up!");
 
-    let things = things::read_things_from_file("content/things.csv").expect("Failed to read things");
+    let things = things::read_things_from_file("./content/things.csv").expect("Failed to read things");
+
+    let words = words::init("./content/words/");
 
     let state = Arc::new(RwLock::new(SiteState {
         last_updated: String::from(""),
         things,
+        words,
     }));
 
     let cloned_state = Arc::clone(&state);
@@ -49,6 +55,8 @@ async fn main() {
     let app = Router::new()
         .nest_service("/assets", get_service(ServeDir::new("./assets")))
         .route("/health", get(health))
+        .route("/posts/", get(site::words::index))
+        .route("/things/", get(site::things::index))
         .route("/", get(site::home::home))
         .with_state(state);
 

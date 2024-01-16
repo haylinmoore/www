@@ -1,6 +1,8 @@
 use maud::{html, Markup};
 use crate::SiteState;
 pub mod home;
+pub mod words;
+pub mod things;
 
 pub fn base(title: String, content: Markup, state: SiteState) -> Markup {
     let last_updated = state.last_updated.clone();
@@ -58,11 +60,17 @@ pub fn base(title: String, content: Markup, state: SiteState) -> Markup {
                                 a target="_blank" href="https://xenyth.net/" {
                                     img src="/assets/img/badges/xenyth.png" alt="xenyth cloud";
                                 }
+                                a target="_blank" href="https://umass.edu" {
+                                    img src="/assets/img/badges/umass.gif" alt="umass";
+                                }
                                 a target="_blank" href="https://ezri.pet" { 
                                     img src="/assets/img/badges/ezri.png" alt="Ezri";
                                 }
                                 img src="/assets/img/badges/aperture_labs.jpg" alt="aperture_labs";
                                 img src="/assets/img/badges/gothtml.png" alt="gothtml";
+                                a target="_blank" href="https://arc.net/gift/73b9fff4" {
+                                    img src="/assets/img/badges/arc.gif" alt="arc";
+                                }
                                 a target="_blank" href="https://code.visualstudio.com" {
                                     img src="/assets/img/badges/vscode.gif" alt="vscode";
                                 }

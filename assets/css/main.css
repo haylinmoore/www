@@ -1,19 +1,19 @@
 body {
-  background-color: var(--background-color);
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 1rem;
-  color: var(--text-color);
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  max-width: 75ch;
+    background-color: var(--background-color);
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    max-width: 75ch;
 }
 
 a {
-    color:var(--container-backdrop);
-    text-decoration:none
+    color: var(--container-backdrop);
+    text-decoration: none
 }
 
 p {
@@ -24,7 +24,8 @@ h1 {
     margin-top: 0.5rem;
 }
 
-h3, h2 {
+h3,
+h2 {
     margin-bottom: 0rem;
 }
 
@@ -39,6 +40,16 @@ pre {
 
 .hero-img {
     order: 1;
+}
+
+.centered {
+    text-align: center;
+    display: block;
+}
+
+li::marker {
+    content: '- ';
+    font-size: 1.2em;
 }
 
 @media screen and (min-width:768px) {
@@ -126,7 +137,7 @@ img {
     margin-bottom: 4em;
 }
 
-:root{
+:root {
     --background-color: #19191e;
     --container-bg: #302D33;
     --container-header-bg: var(--container-bg);
@@ -134,7 +145,8 @@ img {
     --container-backdrop: #04A7E7;
     --text-color: #fafafa
 }
-body[colorscheme="purple"]{
+
+body[colorscheme="purple"] {
     --background-color: #19191e;
     --container-bg: #242432;
     --container-header-bg: var(--container-bg);
@@ -142,7 +154,8 @@ body[colorscheme="purple"]{
     --container-backdrop: #9b5efd;
     --text-color: #fafafa
 }
-body[colorscheme="red"]{
+
+body[colorscheme="red"] {
     --background-color: #191516;
     --container-bg: #2a2432;
     --container-header-bg: var(--container-bg);
@@ -150,7 +163,8 @@ body[colorscheme="red"]{
     --container-backdrop: #ff5757;
     --text-color: #fafafa
 }
-body[colorscheme="pink"]{
+
+body[colorscheme="pink"] {
     --background-color: #19191e;
     --container-bg: #2e2833;
     --container-header-bg: var(--container-bg);
@@ -158,7 +172,8 @@ body[colorscheme="pink"]{
     --container-backdrop: #ffa7d1;
     --text-color: #fafafa
 }
-body[colorscheme="white"]{
+
+body[colorscheme="white"] {
     --background-color: #282626;
     --container-bg: #fafafa;
     --container-header-bg: var(--container-bg);
@@ -166,4 +181,3 @@ body[colorscheme="white"]{
     --container-backdrop: #000000;
     --text-color: #191919
 }
-
