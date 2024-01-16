@@ -8,6 +8,12 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
     let description = "Hampton Moore";
     let title = format!("{} | Hampton Moore", title);
 
+    let build_info = format!("Built on: {} • Ref: {} • Commit: {}",
+        std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")),
+        std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")),
+        std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")),
+    );
+
     html! {
         (maud::DOCTYPE)
             html lang="en" {
@@ -84,6 +90,7 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                                 br;
                                 "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
                                 br;
+                                (build_info)
                             }
                         }
                     }
