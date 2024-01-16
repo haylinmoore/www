@@ -1,17 +1,19 @@
+use super::base;
+use crate::{ClientState, SiteState};
+use axum::extract::{Extension, Path, State};
 use maud::{html, Markup, PreEscaped};
 use std::sync::Arc;
 use tokio::sync::RwLock;
-use axum::extract::{State, Path};
-use crate::SiteState;
-use super::base;
 
+use crate::words::{get};
 
-use crate::words::{get, Post};
-
-pub async fn index(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
+pub async fn index(
+    State(state): State<Arc<RwLock<SiteState>>>,
+    Extension(client_state): Extension<ClientState>,
+) -> Markup {
     let state = state.read().await;
 
-   let words = state.words.clone();
+    let words = state.words.clone();
 
     let content = html! {
         div class="pure-g hero section" {
@@ -19,7 +21,7 @@ pub async fn index(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
                 h1 { "Words I've Written" }
                 ul {
                     @for post in words.clone() {
-                        li { 
+                        li {
                             (post.date.format("%Y-%m-%d").to_string()) ": "
                             a href=(post.link) { (post.title) }
                             (" - ")
@@ -35,10 +37,19 @@ pub async fn index(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
         }
     };
 
-    base("Posts".to_owned(), content, state.clone())
+    base(
+        "Posts".to_owned(),
+        content,
+        state.clone(),
+        client_state,
+    )
 }
 
-pub async fn post(State(state): State<Arc<RwLock<SiteState>>>, Path(slug): Path<String>) -> Markup {
+pub async fn post(
+    State(state): State<Arc<RwLock<SiteState>>>,
+    Path(slug): Path<String>,
+    Extension(client_state): Extension<ClientState>,
+) -> Markup {
     let state = state.read().await;
     let words = state.words.clone();
 
@@ -61,5 +72,5 @@ pub async fn post(State(state): State<Arc<RwLock<SiteState>>>, Path(slug): Path<
         }
     };
 
-    base(post.title, content, state.clone())
+    base(post.title, content, state.clone(), client_state)
 }

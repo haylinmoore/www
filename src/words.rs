@@ -1,8 +1,8 @@
-use std::fs;
 use super::utils;
-use gray_matter::Matter;
-use gray_matter::engine::YAML;
 use chrono::prelude::*;
+use gray_matter::engine::YAML;
+use gray_matter::Matter;
+use std::fs;
 
 #[derive(Clone)]
 pub enum PostType {
@@ -15,13 +15,12 @@ pub struct Post {
     pub slug: String,
     pub link: String,
     pub title: String,
-    pub date: DateTime<FixedOffset>,
+    pub date: NaiveDate,
     pub description: String,
     pub tags: Vec<String>,
     pub r#type: PostType,
     pub body: String,
 }
-
 
 pub fn get(posts: Vec<Post>, slug: &str) -> Option<Post> {
     for post in posts {
@@ -48,10 +47,12 @@ pub fn init(dir: &str) -> Vec<Post> {
                 let matter = Matter::<YAML>::new();
                 let result = matter.parse(&raw);
 
-                let Some(result_map) = result.data.as_ref()
-                else { panic!("Error parsing YAML") };
-                let Ok(result_map) = result_map.as_hashmap()
-                else { panic!("Error getting hashmap from Pod") };
+                let Some(result_map) = result.data.as_ref() else {
+                    panic!("Error parsing YAML")
+                };
+                let Ok(result_map) = result_map.as_hashmap() else {
+                    panic!("Error getting hashmap from Pod")
+                };
 
                 let title = result_map["title"].as_string().unwrap();
                 let description = result_map["description"].as_string().unwrap();
@@ -69,17 +70,21 @@ pub fn init(dir: &str) -> Vec<Post> {
                 // The date_str will be displayed on the homepage, blogindex, and blog pages.
                 // First we parse our text into NaiveDate
                 let date = NaiveDate::parse_from_str(&date_str, "%Y-%m-%d").unwrap();
-                // Now we add time to it
-                let date = NaiveDateTime::new(date, NaiveTime::from_hms_opt(0, 0, 0).unwrap());
-                // Now we make this a Fixed DateTime with Eastern time
-                let timezone_east = FixedOffset::east_opt(8 * 60 * 60).unwrap();
-                let date = DateTime::<FixedOffset>::from_local(date, timezone_east);
 
                 // If there is a link we don't load body text
                 let link = result_map.get("link").map(|s| s.as_string().unwrap());
 
                 if let Some(link) = link {
-                    let post = Post { slug: link.clone(), link, title, date, description, tags, r#type: PostType::Link, body: "".to_string() };
+                    let post = Post {
+                        slug: link.clone(),
+                        link,
+                        title,
+                        date,
+                        description,
+                        tags,
+                        r#type: PostType::Link,
+                        body: "".to_string(),
+                    };
                     posts_list.push(post);
                     continue;
                 }
@@ -87,7 +92,16 @@ pub fn init(dir: &str) -> Vec<Post> {
                 // the markdown without the frontmatter, parsed to html
                 let body = utils::md_to_html(&result.content);
                 let slug = filename.replace(".md", "");
-                let post = Post { link: format!("/posts/{}",  slug), slug, title, date, description, tags, body, r#type: PostType::Post };
+                let post = Post {
+                    link: format!("/posts/{}", slug),
+                    slug,
+                    title,
+                    date,
+                    description,
+                    tags,
+                    body,
+                    r#type: PostType::Post,
+                };
                 posts_list.push(post);
             }
         }

@@ -18,7 +18,8 @@ pub fn read_things_from_file(file_path: &str) -> io::Result<Vec<Thing>> {
 
     let mut things = Vec::new();
 
-    for line in reader.lines().skip(1) { // Skip the header line
+    for line in reader.lines().skip(1) {
+        // Skip the header line
         let line = line?;
         let parts: Vec<&str> = line.split(',').collect();
 

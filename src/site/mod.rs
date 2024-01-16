@@ -1,12 +1,10 @@
+use crate::{ClientState, SiteState};
 use maud::{html, Markup};
-use crate::SiteState;
-use axum::response::Html;
 pub mod home;
-pub mod words;
 pub mod things;
+pub mod words;
 
-pub fn base(title: String, content: Markup, state: SiteState) -> Markup {
-
+pub fn base(title: String, content: Markup, _state: SiteState, client: ClientState) -> Markup {
     let description = "Hampton Moore";
     let title = format!("{} | Hampton Moore", title);
 
@@ -34,7 +32,7 @@ pub fn base(title: String, content: Markup, state: SiteState) -> Markup {
                     meta property="og:theme-color" content="#19191e";
                 }
 
-                body {
+                body colorscheme=(client.theme) {
                     div class="main" {
                         (content);
                         div class="footer" {
@@ -57,7 +55,7 @@ pub fn base(title: String, content: Markup, state: SiteState) -> Markup {
                                 a target="_blank" href="https://umass.edu" {
                                     img src="/assets/img/badges/umass.gif" alt="umass";
                                 }
-                                a target="_blank" href="https://ezrizhu.com/" { 
+                                a target="_blank" href="https://ezrizhu.com/" {
                                     img src="/assets/img/badges/ezri.png" alt="Ezri";
                                 }
                                 img src="/assets/img/badges/aperture_labs.jpg" alt="aperture_labs";
@@ -85,6 +83,7 @@ pub fn base(title: String, content: Markup, state: SiteState) -> Markup {
                                 a target="_blank" href="https://github.com/hamptonmoore/www/blob/main/COPYING" { "GNU AGPLv3 license" }
                                 br;
                                 "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
+                                br;
                             }
                         }
                     }

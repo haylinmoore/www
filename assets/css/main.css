@@ -184,3 +184,26 @@ body[colorscheme="white"] {
     --container-backdrop: #000000;
     --text-color: #191919
 }
+
+body[colorscheme="white"] .themecolors div[theme="white"] {
+    border: 1px solid #191919;
+}
+
+.themecolors {
+    bottom: 8px;
+    left: 8px;
+    display: block;
+    margin: auto;
+    position: absolute;
+}
+
+.themecolors div {
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-left: 8px;
+}
+
+.themecolors div:hover {
+    cursor: pointer;
+}

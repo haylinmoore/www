@@ -1,28 +1,34 @@
+use axum::{response::Html, routing::get, Router};
+use log::{error, info};
 use std::sync::Arc;
 use tokio::sync::RwLock;
-use log::{info, error};
-use axum::{
-    response::Html,
-    routing::{get},
-    Router
-};
 
 use tower_http::services::ServeDir;
 mod site;
+mod things;
 mod update;
 mod utils;
-mod things;
 mod words;
 
 async fn health() -> Html<String> {
     Html(String::from("OK"))
 }
 
-
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct ClientState {
-    pub theme : String,
+    pub theme: String,
 }
+// use axum::extract::FromRef;
+
+// impl FromRef<Arc<RwLock<SiteState>>> for ClientState {
+//     fn from_ref(_: &Arc<RwLock<SiteState>>) -> Self {
+//         // Your logic to extract or construct ClientState from SiteState
+//         // For example:
+//         ClientState {
+//             theme: "default_theme".to_string(),
+//         }
+//     }
+// }
 
 #[derive(Clone)]
 pub struct SiteState {
@@ -36,7 +42,8 @@ async fn main() {
     env_logger::init();
     info!("Starting up!");
 
-    let things = things::read_things_from_file("./content/things.csv").expect("Failed to read things");
+    let things =
+        things::read_things_from_file("./content/things.csv").expect("Failed to read things");
 
     let words = words::init("./content/words/");
 
@@ -64,8 +71,37 @@ async fn main() {
         .route("/posts/:slug", get(site::words::post))
         .route("/things/", get(site::things::index))
         .route("/", get(site::home::home))
-        .with_state(state);
+        .with_state(state)
+        .layer(middleware::from_fn(middleware_apply_client_state));
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
+}
+
+use axum::{
+    extract::Request,
+    middleware::{self, Next},
+    response::Response,
+};
+
+use axum_extra::extract::cookie::{CookieJar};
+
+async fn middleware_apply_client_state(
+    jar: CookieJar,
+    mut request: Request,
+    next: Next,
+) -> Response {
+    let mut state = ClientState {
+        theme: String::from("DEFAULT"),
+    };
+
+    if let Some(cookie) = jar.get("colorscheme") {
+        state.theme = cookie.value().to_string();
+    }
+
+    request.extensions_mut().insert(state);
+
+    let response = next.run(request).await;
+
+    response
 }
