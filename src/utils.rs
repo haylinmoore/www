@@ -1,9 +1,6 @@
 use comrak::{markdown_to_html, ComrakOptions};
 use kuchiki::traits::*;
 
-
-
-
 pub fn md_to_html(md: &str) -> String {
     let mut options = ComrakOptions::default();
     options.render.unsafe_ = true;

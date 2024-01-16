@@ -37,10 +37,5 @@ pub async fn index(
         }
     };
 
-    base(
-        "Things".to_owned(),
-        content,
-        state.clone(),
-        client_state,
-    )
+    base("Things".to_owned(), content, state.clone(), client_state)
 }

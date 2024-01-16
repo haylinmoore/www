@@ -1,4 +1,14 @@
-use axum::{response::Html, routing::get, Router};
+use axum::{
+    extract::Request,
+    middleware::{self, Next},
+    response::Html,
+    response::Response,
+    routing::get,
+    Router,
+};
+
+use axum_extra::extract::cookie::CookieJar;
+
 use log::{error, info};
 use std::sync::Arc;
 use tokio::sync::RwLock;
@@ -77,14 +87,6 @@ async fn main() {
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
-
-use axum::{
-    extract::Request,
-    middleware::{self, Next},
-    response::Response,
-};
-
-use axum_extra::extract::cookie::{CookieJar};
 
 async fn middleware_apply_client_state(
     jar: CookieJar,

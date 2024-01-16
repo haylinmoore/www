@@ -5,7 +5,7 @@ use maud::{html, Markup, PreEscaped};
 use std::sync::Arc;
 use tokio::sync::RwLock;
 
-use crate::words::{get};
+use crate::words::get;
 
 pub async fn index(
     State(state): State<Arc<RwLock<SiteState>>>,
@@ -37,12 +37,7 @@ pub async fn index(
         }
     };
 
-    base(
-        "Posts".to_owned(),
-        content,
-        state.clone(),
-        client_state,
-    )
+    base("Posts".to_owned(), content, state.clone(), client_state)
 }
 
 pub async fn post(
