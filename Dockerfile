@@ -1,5 +1,8 @@
 # Build stage
-FROM rust:1.75-bullseye as builder
+FROM rust:1.75-slim-bullseye as builder
+
+RUN apt-get update
+RUN apt-get install pkg-config libssl-dev -y
 
 # Copy the source code
 ADD . .
@@ -10,8 +13,10 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry \
     cargo build --release
 
 # Final stage
-FROM debian:bullseye
+FROM debian:bullseye-slim
 
+RUN apt-get update
+RUN apt-get install pkg-config libssl-dev -y
 
 ENV COMMIT=${COMMIT}
 ENV REF=${REF}
