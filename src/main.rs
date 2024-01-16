@@ -1,7 +1,6 @@
 use axum::{
     extract::Request,
     middleware::{self, Next},
-    response::Html,
     response::Response,
     routing::get,
     Router,
@@ -12,6 +11,7 @@ use axum_extra::extract::cookie::CookieJar;
 use log::{error, info};
 use std::sync::Arc;
 use tokio::sync::RwLock;
+use maud::{Markup, html};
 
 use tower_http::services::ServeDir;
 mod site;
@@ -20,8 +20,22 @@ mod update;
 mod utils;
 mod words;
 
-async fn health() -> Html<String> {
-    Html(String::from("OK"))
+async fn health() -> Markup {
+    let build_info = format!("Built on: {} • Ref: {} • Commit: {} • CT: {}",
+        std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")),
+        std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")),
+        std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")),
+        std::env::var("CT").unwrap_or_else(|_| String::from("Unknown")),
+    );
+    
+    html! {
+        h1 { "Ok"}
+        div class="pure-g hero section" {
+            div class="pure-u-1" {
+                p { (build_info) }
+            }
+        }
+    }
 }
 
 #[derive(Debug, Clone)]

@@ -18,6 +18,10 @@ FROM debian:bullseye-slim
 RUN apt-get update
 RUN apt-get install pkg-config libssl-dev -y
 
+ARG REF=""
+ARG COMMIT=""
+ARG TIME=""
+
 ENV COMMIT=${COMMIT}
 ENV REF=${REF}
 ENV TIME=${TIME}
