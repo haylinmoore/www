@@ -39,6 +39,10 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            "COMMIT=${{ github.sha }}"
+            "REF=${{ github.ref }}"
+            "TIME=${{ env.TIME }}"
         env:
           COMMIT: ${{ github.sha }}
           REF: ${{ github.ref }}
