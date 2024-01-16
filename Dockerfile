@@ -1,13 +1,6 @@
 # Build stage
 FROM rust:1.75-bullseye as builder
 
-# Set arguments and environment variables
-ENV COMMIT=${COMMIT}
-ENV REF=${REF}
-ENV TIME=${TIME}
-ENV CT=${CT}
-ENV TZ="America/New_York"
-
 # Copy the source code
 ADD . .
 
@@ -25,7 +18,6 @@ ENV REF=${REF}
 ENV TIME=${TIME}
 ENV CT=${CT}
 ENV TZ="America/New_York"
-
 
 # Copy the binary from the build stage
 COPY --from=builder /target/release/www /usr/local/bin/www

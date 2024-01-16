@@ -27,6 +27,10 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
+      - name: Get Build Time
+        run: echo "TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_ENV
+
+
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
@@ -35,7 +39,7 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          build-args: |
-            COMMIT=${{ github.sha }}
-            REF=${{ github.ref }}
-            TIME=${{ env.TIME }}
+        env:
+          COMMIT: ${{ github.sha }}
+          REF: ${{ github.ref }}
+          TIME: ${{ env.TIME }}
