@@ -2,9 +2,6 @@
 FROM rust:1.75-bullseye as builder
 
 # Set arguments and environment variables
-ARG REF=""
-ARG COMMIT=""
-ARG TIME=""
 ENV COMMIT=${COMMIT}
 ENV REF=${REF}
 ENV TIME=${TIME}
@@ -15,14 +12,14 @@ ENV TZ="America/New_York"
 ADD . .
 
 # Build the project
-RUN cargo build --release
+RUN --mount=type=cache,target=/usr/local/cargo/registry \
+    --mount=type=cache,target=/src/target \
+    cargo build --release
 
 # Final stage
 FROM debian:bullseye
 
-ARG REF=""
-ARG COMMIT=""
-ARG TIME=""
+
 ENV COMMIT=${COMMIT}
 ENV REF=${REF}
 ENV TIME=${TIME}

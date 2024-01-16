@@ -4,10 +4,6 @@ use std::fs::{self,File};
 use std::io;
 use std::io::prelude::*;
 
-pub fn path_to_html(path: &str) -> String {
-    let md = fs::read_to_string(path).expect("Failed to read file");
-    md_to_html(&md)
-}
 
 pub fn md_to_html(md: &str) -> String {
     let mut options = ComrakOptions::default();
