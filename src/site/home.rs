@@ -3,7 +3,7 @@ use std::sync::Arc;
 use tokio::sync::RwLock;
 use axum::extract::State;
 use crate::SiteState;
-use crate::words::{get, Post};
+use crate::words::Post;
 use super::base;
 
 pub async fn home(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {

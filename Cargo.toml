@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-axum = { version = "0.6.18", features = ["macros"] }
+axum = { version = "0.7.4", features = ["macros"] }
 chrono = "0.4.31"
 color-eyre = "0.6.2"
 comrak = "0.20.0"
@@ -14,10 +14,10 @@ env_logger = "0.10.1"
 gray_matter = "0.2.6"
 kuchiki = "0.8.1"
 log = "0.4.20"
-maud = { version = "0.25.0", features = ["axum"] }
+maud = { version = "0.26.0", features = ["axum"] }
 rand = "0.8.5"
 reqwest = "0.11.23"
 serde = { version = "1.0.194", features = ["derive"] }
 serde_json = "1.0.110"
 tokio = { version = "1.35.1", features = ["full"] }
-tower-http = { version = "0.4.1", features = ["fs"] }
+tower-http = { version = "0.5.0", features = ["fs"] }

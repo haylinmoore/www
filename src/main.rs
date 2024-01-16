@@ -3,7 +3,7 @@ use tokio::sync::RwLock;
 use log::{info, error};
 use axum::{
     response::Html,
-    routing::{get, get_service},
+    routing::{get},
     Router
 };
 
@@ -18,6 +18,11 @@ async fn health() -> Html<String> {
     Html(String::from("OK"))
 }
 
+
+#[derive(Debug)]
+pub struct ClientState {
+    pub theme : String,
+}
 
 #[derive(Clone)]
 pub struct SiteState {
@@ -53,7 +58,7 @@ async fn main() {
     });
 
     let app = Router::new()
-        .nest_service("/assets", get_service(ServeDir::new("./assets")))
+        .nest_service("/assets", ServeDir::new("./assets"))
         .route("/health", get(health))
         .route("/posts/", get(site::words::index))
         .route("/posts/:slug", get(site::words::post))
@@ -61,9 +66,6 @@ async fn main() {
         .route("/", get(site::home::home))
         .with_state(state);
 
-    axum::Server::bind(&"0.0.0.0:3000".parse().expect("Invalid address"))
-        .serve(app.into_make_service())
-        .await
-        .expect("Server failed");
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    axum::serve(listener, app).await.unwrap();
 }
-
