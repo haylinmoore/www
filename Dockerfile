@@ -15,9 +15,6 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry \
 # Final stage
 FROM debian:bullseye-slim
 
-RUN apt-get update
-RUN apt-get install pkg-config libssl-dev -y
-
 ARG REF=""
 ARG COMMIT=""
 ARG TIME=""
