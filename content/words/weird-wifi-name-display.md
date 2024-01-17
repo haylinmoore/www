@@ -8,7 +8,7 @@ tags:
     - emoji
 ---
 
-After my recent post [Setting the SSID of a Fios Home Router to an emoji](https://hamptonmoore.com/posts/fios-home-router-emoji/) I decided to set my WiFis SSID to "á̶̛̛̓̿̈͐͆̐̇̒̑̈́͘͝aaa".
+After my recent post [Setting the SSID of a Fios Home Router to an emoji](/posts/fios-home-router-emoji) I decided to set my WiFis SSID to "á̶̛̛̓̿̈͐͆̐̇̒̑̈́͘͝aaa".
 That name is [36 octets](https://mothereff.in/byte-counter#a%CC%B6%CC%81%CC%93%CC%BF%CC%88%CC%9B%CC%9B%CD%90%CD%98%CD%86%CC%90%CD%9D%CC%87%CC%92%CC%91%CD%84aaa) making it over the 32 octets maxium specified in the 2012 standard of 802.11 Section 6.3.11.2.2. 
 My router just cut the name down to 32 octets though to stay complient. 
 
