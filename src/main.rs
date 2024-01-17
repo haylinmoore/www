@@ -21,16 +21,14 @@ mod utils;
 mod words;
 
 async fn health() -> Markup {
-    let build_info = format!("Built on: {} • Ref: {} • Commit: {}",
-        std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")),
-        std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")),
-        std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")),
-    );
-    
     html! {
         "Ok"
         br;
-        (build_info)
+        "Build Info: " (std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")))
+        br;
+        "Ref: " (std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")))
+        br;
+        "Commit: " (std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")))
     }
 }
 

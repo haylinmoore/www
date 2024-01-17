@@ -8,10 +8,16 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
     let description = "Hampton Moore";
     let title = format!("{} | Hampton Moore", title);
 
-    let build_info = format!("Built on: {} • Ref: {} • Commit: {}",
+    let commit = if let Ok(commit) = std::env::var("COMMIT") {
+        commit[..8].to_string()
+    } else {
+        String::from("Unknown")
+    };
+
+    let build_info = format!("{} {}:{}",
         std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")),
         std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")),
-        std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")),
+        commit
     );
 
     html! {
