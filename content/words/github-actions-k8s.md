@@ -11,9 +11,9 @@ tags:
     - cd
 ---
 
-Recently, I migrated my site to being built and deployed using GitHub Actions, this approach is useful if you're experiencing slow docker cross-compilation speeds, like those on M1 Macs. Typically my local flow for building new images involves a Makefile that builds the Docker image, pushes it to a registry, and then issues the `kubectl rollout restart deployment DEPLOYMENT_NAME` command. There are already ample resources on how to build and push a Docker image using Github Actions, so I won't cover that here, but I will cover how to restart a deployment or trigger a kubernetes command using Github Actions.
+Recently, I migrated my site to being built and deployed using GitHub Actions, this approach is useful if you're experiencing slow docker cross-compilation speeds, like those on M1 Macs. Typically my local flow for building new images involves a Makefile that builds the Docker image, pushes it to a registry, and then issues the `kubectl rollout restart deployment DEPLOYMENT_NAME` command. There are already ample resources on how to build and push a Docker image using Github Actions ([here](https://github.com/marketplace/actions/build-and-push-docker-images), [here](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action), and [here](https://docs.docker.com/build/ci/github-actions/)), so I won't cover that here, but I will cover how to restart a deployment or trigger a kubernetes command using Github Actions.
 
-To replicate this flow with GitHub Actions, the first step is understanding Kubernetes Service Accounts. Here's an example of a service account setup that allows GitHub Actions to restart a deployment:
+To replicate `rollout restart` part of the deploy flow, the first step is understanding Kubernetes Service Accounts. Here's an example of a service account setup that allows GitHub Actions to restart a deployment:
 
 ```
 apiVersion: v1
@@ -49,6 +49,7 @@ These configurations comprise three parts:
 
 1. The service account itself, identified by a name and a namespace.
 2. A ClusterRole, allowing the service account to get and patch deployments.
+    1. One could optionally use a Role to limit the scope of the services account to specific deployments.
 3. A ClusterRoleBinding, binding the service account to the ClusterRole.
 Next, generate a token for the service account using:
 
@@ -164,7 +165,7 @@ spec:
         app: APP_NAME
     spec:
       containers:
-      - name: hamptonmoore
+      - name: APP_NAME
         image: IMAGE_URL
         imagePullPolicy: Always
         ports:
