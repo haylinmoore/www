@@ -61,6 +61,7 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                                 a target="_blank" href="https://umass.edu" {
                                     img src="/assets/img/badges/umass.gif" alt="umass";
                                 }
+                                img src="/assets/img/badges/hammy.gif" alt="hammy";
                                 a target="_blank" href="https://ezrizhu.com/" {
                                     img src="/assets/img/badges/ezri.png" alt="Ezri";
                                 }

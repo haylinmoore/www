@@ -147,7 +147,7 @@ img {
     margin-bottom: 4em;
 }
 
-:root {
+body[colorscheme="blue"] {
     --background-color: #19191e;
     --container-bg: #302D33;
     --container-header-bg: var(--container-bg);
@@ -174,7 +174,7 @@ body[colorscheme="red"] {
     --text-color: #fafafa
 }
 
-body[colorscheme="pink"] {
+:root {
     --background-color: #19191e;
     --container-bg: #2e2833;
     --container-header-bg: var(--container-bg);
