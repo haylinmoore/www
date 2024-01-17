@@ -180,11 +180,11 @@ body[colorscheme="pink"] {
 }
 
 body[colorscheme="white"] {
-    --background-color: #fafafa;
-    --container-bg: #c8c8c8;
+    --background-color: #E5E1DA;
+    --container-bg: #fafafa;
     --container-header-bg: var(--container-bg);
     --container-header-color: #191919;
-    --container-backdrop: #5e5757;
+    --container-backdrop: #2d5f67;
     --text-color: #191919
 }
 

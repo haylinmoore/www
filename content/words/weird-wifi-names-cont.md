@@ -15,12 +15,10 @@ Below are the previous photos of the previous SSID "á̶̛̛̓̿̈͐͆̐̇͘͝�
 
 Galaxy S8 running Android 9 with Kernel 4.4.153
 ![](/assets/img/iosWifiBug/android.jpg)
-
 ![](/assets/img/iosWifiBug/d2/android.jpg)
 
 Amazon Firestick
 ![](/assets/img/iosWifiBug/firestick.jpg)
-
 ![](/assets/img/iosWifiBug/d2/firestick.jpg)
 
 As before the Galaxy S8 and the Firestick both handled it perfectly with there being no issues with how it rendered besides vertical cutoff which makes sense.
@@ -42,21 +40,18 @@ Unlike last time the Macbook actually showed the network. I believe last time in
 
 Windows 10 Pro 10.0.19041
 ![](/assets/img/iosWifiBug/windows10.png)
-
 ![](/assets/img/iosWifiBug/d2/windows10.jpg)
 
 Windows was able to properly handle this SSID as opposed to falling back to [Windows-1252](https://en.wikipedia.org/wiki/Windows-1252) like it did previously.
 
 Chromebook running ChromeOS 83.0.4103.97
 ![](/assets/img/iosWifiBug/chromeos.jpg)
-
 ![](/assets/img/iosWifiBug/d2/chromeos.jpg)
 
 Unlike last time the Chromebook was able to render this perfectly with no question marks.
 
 Kindle Paperwhite running Firmware 5.10.2
 ![](/assets/img/iosWifiBug/kindlepaperwhite.jpg)
-
 ![](/assets/img/iosWifiBug/d2/kindlepaperwhite.jpg?)
 
 Vizio M55-C2 TV
