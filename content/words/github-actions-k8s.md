@@ -174,7 +174,6 @@ spec:
           httpGet:
             path: /health
             port: 3000
-
 ```
 
 This will create a deployment with two replicas. This means that when a new version is deployed, the old version will not be taken down until the new version is ready. Using the livenessProbe, Kubernetes will know when the new version is ready, and then take down the old version.

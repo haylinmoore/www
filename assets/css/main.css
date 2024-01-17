@@ -37,6 +37,10 @@ pre {
     padding: 1em;
 }
 
+code {
+    background-color: var(--background-color);
+}
+
 .hero-text {
     order: 2;
 }
