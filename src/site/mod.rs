@@ -56,11 +56,11 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                                 a target="_blank" href="https://github.com/hamptonmoore" {
                                     img src="/assets/img/badges/github.png" alt="github";
                                 }
-
+                                img src="/assets/img/badges/penguins.gif" alt="Powered by Penguins";
                                 img src="/assets/img/badges/debian.gif" alt="Powered by Debian";
-                                a target="_blank" href="https://infernocomms.com" {
-                                    img src="/assets/img/badges/infernocomms.png" alt="Inferno Communications";
-                                }
+                                // a target="_blank" href="https://infernocomms.com" {
+                                //     img src="/assets/img/badges/infernocomms.png" alt="Inferno Communications";
+                                // }
                                 a target="_blank" href="https://xenyth.net/" {
                                     img src="/assets/img/badges/xenyth.png" alt="xenyth cloud";
                                 }
@@ -71,8 +71,8 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                                 a target="_blank" href="https://ezrizhu.com/" {
                                     img src="/assets/img/badges/ezri.png" alt="Ezri";
                                 }
-                                img src="/assets/img/badges/aperture_labs.jpg" alt="aperture_labs";
-                                img src="/assets/img/badges/gothtml.png" alt="gothtml";
+                                img src="/assets/img/badges/yoshi-egg-crack.gif" alt="Yoshi!";
+                                // img src="/assets/img/badges/gothtml.png" alt="gothtml";
                                 a target="_blank" href="https://arc.net/gift/73b9fff4" {
                                     img src="/assets/img/badges/arc.gif" alt="arc";
                                 }
@@ -82,8 +82,12 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                                 a target="_blank" href="https://code.visualstudio.com" {
                                     img src="/assets/img/badges/vscode.gif" alt="vscode";
                                 }
+                                img src="/assets/img/badges/runrust.png" alt="Rust!";
                                 a target="_blank" href="https://yesterweb.org/no-to-web3/" {
                                     img src="/assets/img/badges/roly-saynotoweb3.gif" alt="say no to web3";
+                                }
+                                a target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer" {
+                                    img src="/assets/img/badges/vcss-blue.gif" alt="Valid CSS!";
                                 }
                             }
 

@@ -107,6 +107,7 @@ img {
 @media screen and (max-width:768px) {
     .hero-img {
         max-width: 300px;
+        margin: auto;
     }
 }
 

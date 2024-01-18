@@ -54,7 +54,7 @@ pub async fn post(
         div class="pure-g hero section" {
             div class="pure-u-1" {
                 h1 { (post.title) }
-                p { (post.date.format("%Y-%m-%d").to_string()) " - " (post.description) }
+                p { ("Hampton Moore - ") (post.date.format("%Y-%m-%d").to_string()) " - " (post.description) }
                 hr {}
                 div {
                     (PreEscaped(post.body))
