@@ -1,5 +1,5 @@
 use super::utils;
-use chrono::prelude::*;
+use chrono::{DateTime, FixedOffset, NaiveDate, NaiveDateTime, NaiveTime, TimeZone};
 use gray_matter::engine::YAML;
 use gray_matter::Matter;
 use std::fs;
@@ -15,7 +15,7 @@ pub struct Post {
     pub slug: String,
     pub link: String,
     pub title: String,
-    pub date: NaiveDate,
+    pub date: DateTime<FixedOffset>,
     pub description: String,
     pub tags: Vec<String>,
     pub r#type: PostType,
@@ -70,6 +70,10 @@ pub fn init(dir: &str) -> Vec<Post> {
                 // The date_str will be displayed on the homepage, blogindex, and blog pages.
                 // First we parse our text into NaiveDate
                 let date = NaiveDate::parse_from_str(&date_str, "%Y-%m-%d").unwrap();
+                let date = NaiveDateTime::new(date, NaiveTime::from_hms_opt(0, 0, 0).unwrap());
+                // Now we make this a Fixed DateTime with Eastern time
+                let timezone_east = FixedOffset::east_opt(8 * 60 * 60).unwrap();
+                let date = timezone_east.from_local_datetime(&date).unwrap();
 
                 // If there is a link we don't load body text
                 let link = result_map.get("link").map(|s| s.as_string().unwrap());

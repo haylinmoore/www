@@ -14,7 +14,8 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
         String::from("Unknown")
     };
 
-    let build_info = format!("{} {}:{}",
+    let build_info = format!(
+        "{} {}:{}",
         std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")),
         std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")),
         commit

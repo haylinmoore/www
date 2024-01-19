@@ -1,11 +1,11 @@
-use chrono::NaiveDate;
+use chrono::{DateTime, FixedOffset, NaiveDate, NaiveDateTime, NaiveTime, TimeZone};
 use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
 
 #[derive(Clone, Debug)]
 pub struct Thing {
-    pub date: NaiveDate,
+    pub date: DateTime<FixedOffset>,
     pub link: String,
     pub title: String,
     pub description: Option<String>,
@@ -28,6 +28,12 @@ pub fn read_things_from_file(file_path: &str) -> io::Result<Vec<Thing>> {
         }
 
         let date = NaiveDate::parse_from_str(parts[0], "%Y-%m-%d").expect("Invalid date format");
+        let date = NaiveDateTime::new(date, NaiveTime::from_hms_opt(0, 0, 0).unwrap());
+        // Now we make this a Fixed DateTime with Eastern time
+        let timezone_east = FixedOffset::east_opt(8 * 60 * 60).unwrap();
+        let date = timezone_east.from_local_datetime(&date).unwrap();
+
+
         let link = parts[1].to_string();
         let title = parts[2].to_string();
         let mut description = parts.get(3).map(|s| s.to_string());

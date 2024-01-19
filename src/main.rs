@@ -9,16 +9,18 @@ use axum::{
 use axum_extra::extract::cookie::CookieJar;
 
 use log::{error, info};
+use maud::{html, Markup};
 use std::sync::Arc;
 use tokio::sync::RwLock;
-use maud::{Markup, html};
 
 use tower_http::services::ServeDir;
 mod site;
+mod sitemap;
 mod things;
 mod update;
 mod utils;
 mod words;
+mod rss;
 
 async fn health() -> Markup {
     html! {
@@ -42,6 +44,7 @@ pub struct SiteState {
     last_updated: String,
     things: Vec<things::Thing>,
     words: Vec<words::Post>,
+    sitemap: Vec<u8>,
 }
 
 #[tokio::main]
@@ -54,11 +57,16 @@ async fn main() {
 
     let words = words::init("./content/words/");
 
-    let state = Arc::new(RwLock::new(SiteState {
+    let mut state = SiteState {
         last_updated: String::from(""),
         things,
         words,
-    }));
+        sitemap: vec![],
+    };
+
+    state.sitemap = sitemap::init(state.clone()).expect("Failed to init sitemap");
+
+    let state = Arc::new(RwLock::new(state));
 
     let cloned_state = Arc::clone(&state);
     tokio::spawn(async move {
@@ -78,6 +86,8 @@ async fn main() {
         .route("/posts/:slug", get(site::words::post))
         .route("/things/", get(site::things::index))
         .route("/", get(site::home::home))
+        .route("/sitemap.xml", get(sitemap::get))
+        .route("/feed.xml", get(rss::get))
         .with_state(state)
         .layer(middleware::from_fn(middleware_apply_client_state));
 
