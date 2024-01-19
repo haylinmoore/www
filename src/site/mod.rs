@@ -30,6 +30,7 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                     link rel="stylesheet" href="/assets/css/pure-min.css";
                     link rel="stylesheet" href="/assets/css/main.css";
                     link rel="stylesheet" href="/assets/css/grids-responsive-min.css";
+                    link rel="alternate" title="Hampton's Blog" type="application/rss+xml" href="/feed.xml";
 
                     title { (title) };
                     meta name="description" content=(description);
