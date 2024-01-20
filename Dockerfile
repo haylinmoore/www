@@ -1,9 +1,9 @@
 # Build stage
-FROM rust:1.75-slim-bullseye as builder
+FROM rust:1.75-alpine3.19 as builder
 
-RUN apt-get update
-RUN apt-get install pkg-config libssl-dev -y
-
+# RUN apt-get update
+# RUN apt-get install pkg-config libssl-dev -y
+RUN apk add musl-dev
 # Copy the source code
 ADD . .
 
@@ -13,7 +13,7 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry \
     cargo build --release
 
 # Final stage
-FROM debian:bullseye-slim
+FROM alpine:3.19
 
 ARG REF=""
 ARG COMMIT=""

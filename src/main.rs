@@ -84,6 +84,7 @@ async fn main() {
         .route("/health", get(health))
         .route("/posts/", get(site::words::index))
         .route("/posts/:slug", get(site::words::post))
+        .route("/posts/:slug/", get(site::words::post))
         .route("/things/", get(site::things::index))
         .route("/", get(site::home::home))
         .route("/sitemap.xml", get(sitemap::get))
