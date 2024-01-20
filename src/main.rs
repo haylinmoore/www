@@ -21,6 +21,7 @@ mod update;
 mod utils;
 mod words;
 mod rss;
+mod badges;
 
 async fn health() -> Markup {
     html! {
@@ -45,6 +46,7 @@ pub struct SiteState {
     things: Vec<things::Thing>,
     words: Vec<words::Post>,
     sitemap: Vec<u8>,
+    badges: Vec<badges::Badge>,
 }
 
 #[tokio::main]
@@ -62,9 +64,12 @@ async fn main() {
         things,
         words,
         sitemap: vec![],
+        badges: vec![]
     };
 
     state.sitemap = sitemap::init(state.clone()).expect("Failed to init sitemap");
+
+    state.badges = badges::read_badges_from_file("./content/badges.csv").expect("Failed to read badges");
 
     let state = Arc::new(RwLock::new(state));
 

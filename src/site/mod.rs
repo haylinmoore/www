@@ -51,52 +51,15 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                         (content);
                         div class="footer" {
                             div class="badges" {
-                                a target="_blank" href="https://social.treehouse.systems/@hammy" {
-                                    img src="/assets/img/badges/mastodon.gif" alt="mastodon";
-                                }
-
-                                a target="_blank" href="https://github.com/hamptonmoore" {
-                                    img src="/assets/img/badges/github.png" alt="github";
-                                }
-                                a target="_blank" href="https://kernel.org" {
-                                    img src="/assets/img/badges/penguins.gif" alt="Powered by Penguins";
-                                }
-                                a target="_blank" href="https://debian.org" {
-                                    img src="/assets/img/badges/debian.gif" alt="Powered by Debian";
-                                }
-                                // a target="_blank" href="https://infernocomms.com" {
-                                //     img src="/assets/img/badges/infernocomms.png" alt="Inferno Communications";
-                                // }
-                                a target="_blank" href="https://xenyth.net/" {
-                                    img src="/assets/img/badges/xenyth.png" alt="xenyth cloud";
-                                }
-                                a target="_blank" href="https://umass.edu" {
-                                    img src="/assets/img/badges/umass.png" alt="umass";
-                                }
-                                img src="/assets/img/badges/hammy.png" alt="hammy";
-                                a target="_blank" href="https://ezrizhu.com/" {
-                                    img src="/assets/img/badges/ezri.png" alt="Ezri";
-                                }
-                                a target="_blank" href="https://hrtcafe.net/index.php/Main_Page" {
-                                    img src="/assets/img/badges/yoshi-egg-crack.gif" alt="Yoshi!";
-                                }
-                                a target="_blank" href="https://arc.net/gift/73b9fff4" {
-                                    img src="/assets/img/badges/arc.gif" alt="arc";
-                                }
-                                a target="_blank" href="https://open.spotify.com/playlist/0tEjCoXGaAOH45dTTVvwWl" {
-                                    img src="/assets/img/badges/tf.gif" alt="trans-fem hyperpop";
-                                }
-                                a target="_blank" href="https://code.visualstudio.com" {
-                                    img src="/assets/img/badges/vscode.gif" alt="vscode";
-                                }
-                                a target="_blank" href="https://rust-lang.org" {
-                                    img src="/assets/img/badges/runrust.png" alt="Rust!";
-                                }
-                                a target="_blank" href="https://yesterweb.org/no-to-web3/" {
-                                    img src="/assets/img/badges/roly-saynotoweb3.gif" alt="say no to web3";
-                                }
-                                a target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer" {
-                                    img src="/assets/img/badges/vcss-blue.gif" alt="Valid CSS!";
+                                @for badge in &_state.badges {
+                                    // check if the link is Some
+                                    @if let Some(link) = &badge.link {
+                                        a href=(link) target="_blank" {
+                                            img src=(badge.src) alt=(badge.alt);
+                                        }
+                                    } @else {
+                                        img src=(badge.src) alt=(badge.alt);
+                                    }
                                 }
                             }
 
