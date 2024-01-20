@@ -58,8 +58,12 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                                 a target="_blank" href="https://github.com/hamptonmoore" {
                                     img src="/assets/img/badges/github.png" alt="github";
                                 }
-                                img src="/assets/img/badges/penguins.gif" alt="Powered by Penguins";
-                                img src="/assets/img/badges/debian.gif" alt="Powered by Debian";
+                                a target="_blank" href="https://kernel.org" {
+                                    img src="/assets/img/badges/penguins.gif" alt="Powered by Penguins";
+                                }
+                                a target="_blank" href="https://debian.org" {
+                                    img src="/assets/img/badges/debian.gif" alt="Powered by Debian";
+                                }
                                 // a target="_blank" href="https://infernocomms.com" {
                                 //     img src="/assets/img/badges/infernocomms.png" alt="Inferno Communications";
                                 // }
@@ -67,14 +71,15 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                                     img src="/assets/img/badges/xenyth.png" alt="xenyth cloud";
                                 }
                                 a target="_blank" href="https://umass.edu" {
-                                    img src="/assets/img/badges/umass.gif" alt="umass";
+                                    img src="/assets/img/badges/umass.png" alt="umass";
                                 }
-                                img src="/assets/img/badges/hammy.gif" alt="hammy";
+                                img src="/assets/img/badges/hammy.png" alt="hammy";
                                 a target="_blank" href="https://ezrizhu.com/" {
                                     img src="/assets/img/badges/ezri.png" alt="Ezri";
                                 }
-                                img src="/assets/img/badges/yoshi-egg-crack.gif" alt="Yoshi!";
-                                // img src="/assets/img/badges/gothtml.png" alt="gothtml";
+                                a target="_blank" href="https://hrtcafe.net/index.php/Main_Page" {
+                                    img src="/assets/img/badges/yoshi-egg-crack.gif" alt="Yoshi!";
+                                }
                                 a target="_blank" href="https://arc.net/gift/73b9fff4" {
                                     img src="/assets/img/badges/arc.gif" alt="arc";
                                 }
@@ -84,7 +89,9 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                                 a target="_blank" href="https://code.visualstudio.com" {
                                     img src="/assets/img/badges/vscode.gif" alt="vscode";
                                 }
-                                img src="/assets/img/badges/runrust.png" alt="Rust!";
+                                a target="_blank" href="https://rust-lang.org" {
+                                    img src="/assets/img/badges/runrust.png" alt="Rust!";
+                                }
                                 a target="_blank" href="https://yesterweb.org/no-to-web3/" {
                                     img src="/assets/img/badges/roly-saynotoweb3.gif" alt="say no to web3";
                                 }
