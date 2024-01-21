@@ -1,7 +1,7 @@
 use crate::SiteState;
-use color_eyre::eyre::Result;
 use std::sync::Arc;
 use tokio::sync::RwLock;
+use anyhow::Result;
 
 use crate::webring::get_webring_link;
 
