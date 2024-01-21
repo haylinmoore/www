@@ -65,9 +65,9 @@ pub fn base(title: String, content: Markup, state: SiteState, client: ClientStat
 
                             p {
                                 @if let Some(webring) = &state.webring {
-                                    a href=(webring.prev.as_ref().unwrap().url) { (webring.prev.as_ref().unwrap().name) } (" <- ")
+                                    a href=(webring.prev.url) { (webring.prev.name) } (" <- ")
                                     a href=("https://github.com/umaring/umaring") { "UMass Ring" }
-                                    (" -> ") a href=(webring.next.as_ref().unwrap().url) { (webring.next.as_ref().unwrap().name) }
+                                    (" -> ") a href=(webring.next.url) { (webring.next.name) }
                                     br;
                                 }
                                 "Source code "

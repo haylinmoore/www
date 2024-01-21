@@ -9,9 +9,9 @@ pub struct Member {
 
 #[derive(Deserialize, Clone)]
 pub struct MemberGetResponse {
-    pub prev: Option<Member>,
+    pub prev: Member,
     pub member: Member,
-    pub next: Option<Member>,
+    pub next: Member,
 }
 
 pub async fn get_webring_link() -> Option<MemberGetResponse> {
@@ -33,10 +33,10 @@ pub async fn get_webring_link() -> Option<MemberGetResponse> {
 
     let res = res.unwrap();
 
-    if res.member.id == res.next.as_ref().unwrap().id {
+    if res.member.id == res.next.id {
         return None;
     }
-    if res.member.id == res.prev.as_ref().unwrap().id {
+    if res.member.id == res.prev.id {
         return None;
     }
     
