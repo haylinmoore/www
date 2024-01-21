@@ -4,7 +4,7 @@ pub mod home;
 pub mod things;
 pub mod words;
 
-pub fn base(title: String, content: Markup, _state: SiteState, client: ClientState) -> Markup {
+pub fn base(title: String, content: Markup, state: SiteState, client: ClientState) -> Markup {
     let description = "Hampton Moore";
     let title = format!("{} | Hampton Moore", title);
 
@@ -31,7 +31,7 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                     link rel="stylesheet" href="/assets/css/main.css";
                     link rel="stylesheet" href="/assets/css/grids-responsive-min.css";
                     link rel="alternate" title="Hampton's Blog" type="application/rss+xml" href="/feed.xml";
-
+                    
                     title { (title) };
                     meta name="description" content=(description);
                     meta name="author" content="Hampton Moore";
@@ -51,7 +51,7 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                         (content);
                         div class="footer" {
                             div class="badges" {
-                                @for badge in &_state.badges {
+                                @for badge in &state.badges {
                                     // check if the link is Some
                                     @if let Some(link) = &badge.link {
                                         a href=(link) target="_blank" {
@@ -64,8 +64,12 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                             }
 
                             p {
-                                // "Auto refreshed: " (last_updated)
-                                // br;
+                                @if let Some(webring) = &state.webring {
+                                    a href=(webring.prev.as_ref().unwrap().url) { (webring.prev.as_ref().unwrap().name) } (" <- ")
+                                    a href=("https://github.com/umaring/umaring") { "UMass Ring" }
+                                    (" -> ") a href=(webring.next.as_ref().unwrap().url) { (webring.next.as_ref().unwrap().name) }
+                                    br;
+                                }
                                 "Source code "
                                 a target="_blank" href="https://github.com/hamptonmoore/www" { "available here" }
                                 ", released under the "
@@ -74,6 +78,7 @@ pub fn base(title: String, content: Markup, _state: SiteState, client: ClientSta
                                 "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
                                 br;
                                 (build_info)
+                                br;
                             }
                         }
                     }

@@ -1,5 +1,5 @@
 use axum::{
-    extract::Request,
+    extract::{Request, State},
     middleware::{self, Next},
     response::Response,
     routing::get,
@@ -22,8 +22,13 @@ mod utils;
 mod words;
 mod rss;
 mod badges;
+mod webring;
 
-async fn health() -> Markup {
+async fn health(
+    State(state): State<Arc<RwLock<SiteState>>>,
+) -> Markup {
+    let state = state.read().await;
+
     html! {
         "Ok"
         br;
@@ -32,6 +37,10 @@ async fn health() -> Markup {
         "Ref: " (std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")))
         br;
         "Commit: " (std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")))
+        br;
+        "Last Updated: " (state.last_updated)
+        br;
+        "Webring: " (if state.webring.is_some() { "Some" } else { "None" })
     }
 }
 
@@ -47,6 +56,7 @@ pub struct SiteState {
     words: Vec<words::Post>,
     sitemap: Vec<u8>,
     badges: Vec<badges::Badge>,
+    webring: Option<webring::MemberGetResponse>,
 }
 
 #[tokio::main]
@@ -64,8 +74,11 @@ async fn main() {
         things,
         words,
         sitemap: vec![],
-        badges: vec![]
+        badges: vec![],
+        webring: None,
     };
+
+    state.webring = webring::get_webring_link().await;
 
     state.sitemap = sitemap::init(state.clone()).expect("Failed to init sitemap");
 
@@ -74,12 +87,15 @@ async fn main() {
     let state = Arc::new(RwLock::new(state));
 
     let cloned_state = Arc::clone(&state);
+
+    update::update(cloned_state.clone()).await.unwrap();
+
     tokio::spawn(async move {
         loop {
             if let Err(e) = update::update(cloned_state.clone()).await {
                 error!("Error updating: {}", e);
             };
-            // wait 1 min
+
             tokio::time::sleep(tokio::time::Duration::from_secs(60)).await;
         }
     });

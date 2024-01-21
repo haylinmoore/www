@@ -111,18 +111,12 @@ img {
     }
 }
 
-.flag {
-    width: 2.3rem;
-    height: 1.7rem;
-    margin-right: 0.5rem;
-    border-radius: 0.25rem;
-}
-
 .footer {
     padding: 1rem;
     font-size: 0.75rem;
     color: var(--nord4);
     text-align: center;
+    margin-top: -2rem;
 }
 
 .footer p {
