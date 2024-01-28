@@ -4,9 +4,14 @@ pub mod home;
 pub mod things;
 pub mod words;
 
-pub fn base(title: String, content: Markup, state: SiteState, client: ClientState) -> Markup {
+pub struct PageContext {
+    title: String,
+    canonical: String,
+}
+
+pub fn base(context: PageContext, content: Markup, state: SiteState, client: ClientState) -> Markup {
     let description = "Hampton Moore";
-    let title = format!("{} | Hampton Moore", title);
+    let title = format!("{} | Hampton Moore", context.title);
 
     let commit = if let Ok(commit) = std::env::var("COMMIT") {
         commit[..8].to_string()
@@ -31,7 +36,8 @@ pub fn base(title: String, content: Markup, state: SiteState, client: ClientStat
                     link rel="stylesheet" href="/assets/css/main.css";
                     link rel="stylesheet" href="/assets/css/grids-responsive-min.css";
                     link rel="alternate" title="Hampton's Blog" type="application/rss+xml" href="/feed.xml";
-                    
+                    link rel="canonical" href=(format!("https://hamptonmoore.com{}", context.canonical));
+
                     title { (title) };
                     meta name="description" content=(description);
                     meta name="author" content="Hampton Moore";
@@ -86,4 +92,24 @@ pub fn base(title: String, content: Markup, state: SiteState, client: ClientStat
                 }
             }
     }
+}
+
+pub fn four04(
+    path: String,
+    state: SiteState,
+    client: ClientState,
+) -> Markup {
+    let content = html! {
+        div class="pure-g hero section" {
+            div class="pure-u-1" {
+                h1 { "404" }
+                p { "Page not found" }
+            }
+        }
+    };
+
+    base(PageContext {
+        title: "404".to_string(),
+        canonical: format!("/{}", path),
+    }, content, state, client)
 }

@@ -1,4 +1,4 @@
-use super::base;
+use super::{base, PageContext};
 use crate::words::Post;
 use crate::{ClientState, SiteState};
 use axum::extract::{Extension, State};
@@ -41,11 +41,11 @@ pub async fn home(
                 img class="pure-img" src="/assets/img/hammy.png" alt="Hampton's avatar";
             }
             div class="themecolors" {
-                div style="background-color: #04a7e7" theme="blue" {}
-                div style="background-color: #ffa7d1" theme="pink" {}
-                div style="background-color: #fafafa; box-sizing: border-box;" theme="white" {}
-                div style="background-color: #9b5efd" theme="purple" {}
-                div style="background-color: #ff5757" theme="red" {}
+                div style="background-color: var(--scheme-blue)" theme="blue" {}
+                div style="background-color: var(--scheme-pink)" theme="pink" {}
+                div style="background-color: var(--scheme-white); box-sizing: border-box;" theme="white" {}
+                div style="background-color: var(--scheme-purple)" theme="purple" {}
+                div style="background-color: var(--scheme-red)" theme="red" {}
             }
             script type="text/javascript" {
                (PreEscaped("
@@ -100,5 +100,8 @@ pub async fn home(
 
     };
 
-    base("Home".to_owned(), content, state.clone(), client_state)
+    base(PageContext {
+        title: "Home".to_string(),
+        canonical: "/".to_string(),
+    }, content, state.clone(), client_state)
 }

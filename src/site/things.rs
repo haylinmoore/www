@@ -1,4 +1,4 @@
-use super::base;
+use super::{base, PageContext};
 use crate::{ClientState, SiteState};
 use axum::extract::{Extension, State};
 use maud::{html, Markup};
@@ -37,5 +37,8 @@ pub async fn index(
         }
     };
 
-    base("Things".to_owned(), content, state.clone(), client_state)
+    base(PageContext {
+        title: "Things".to_string(),
+        canonical: "/things/".to_string(),
+    }, content, state.clone(), client_state)
 }

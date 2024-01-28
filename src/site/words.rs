@@ -1,4 +1,4 @@
-use super::base;
+use super::{base, PageContext, four04};
 use crate::{ClientState, SiteState};
 use axum::extract::{Extension, Path, State};
 use maud::{html, Markup, PreEscaped};
@@ -37,7 +37,10 @@ pub async fn index(
         }
     };
 
-    base("Posts".to_owned(), content, state.clone(), client_state)
+    base(PageContext {
+        title: "Words".to_string(),
+        canonical: "/posts/".to_string(),
+    }, content, state.clone(), client_state)
 }
 
 pub async fn post(
@@ -48,7 +51,14 @@ pub async fn post(
     let state = state.read().await;
     let words = state.words.clone();
 
-    let post = get(words, &slug).unwrap();
+    let post = get(words, &slug);
+
+    if post.is_none() {
+        return four04(slug, state.clone(), client_state);
+    }
+
+    let post = post.unwrap();
+
 
     let content = html! {
         div class="pure-g hero section" {
@@ -67,5 +77,8 @@ pub async fn post(
         }
     };
 
-    base(post.title, content, state.clone(), client_state)
+    base(PageContext {
+        title: post.title,
+        canonical: post.link,
+    }, content, state.clone(), client_state)
 }

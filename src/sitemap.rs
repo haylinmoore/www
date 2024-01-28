@@ -17,7 +17,7 @@ pub fn init(state: SiteState) -> Result<Vec<u8>> {
         urlwriter.url(format!("{}/{}/", BASE_URL, page))?;
     }
     for project in state.words {
-        urlwriter.url(format!("{}/posts/{}", BASE_URL, project.slug))?;
+        urlwriter.url(format!("{}/posts/{}/", BASE_URL, project.slug))?;
     }
     urlwriter.end()?;
     Ok(sm)

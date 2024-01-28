@@ -126,7 +126,7 @@ async fn middleware_apply_client_state(
     next: Next,
 ) -> Response {
     let mut state = ClientState {
-        theme: String::from("DEFAULT"),
+        theme: String::from("white"),
     };
 
     if let Some(cookie) = jar.get("colorscheme") {

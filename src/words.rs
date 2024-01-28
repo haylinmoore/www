@@ -97,7 +97,7 @@ pub fn init(dir: &str) -> Vec<Post> {
                 let body = utils::md_to_html(&result.content);
                 let slug = filename.replace(".md", "");
                 let post = Post {
-                    link: format!("/posts/{}", slug),
+                    link: format!("/posts/{}/", slug),
                     slug,
                     title,
                     date,
