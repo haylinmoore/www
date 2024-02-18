@@ -3,19 +3,19 @@ title: Github Actions and Kubernetes
 description: using Github Actions to deploy to Kubernetes
 date: 2024-01-16
 tags:
-    - kubernetes
-    - github
-    - github-actions
-    - docker
-    - ci
-    - cd
+  - kubernetes
+  - github
+  - github-actions
+  - docker
+  - ci
+  - cd
 ---
 
 Recently, I migrated my site to being built and deployed using GitHub Actions, this approach is useful if you're experiencing slow docker cross-compilation speeds, like those on M1 Macs. Typically my local flow for building new images involves a Makefile that builds the Docker image, pushes it to a registry, and then issues the `kubectl rollout restart deployment DEPLOYMENT_NAME` command. There are already ample resources on how to build and push a Docker image using Github Actions ([here](https://github.com/marketplace/actions/build-and-push-docker-images), [here](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action), and [here](https://docs.docker.com/build/ci/github-actions/)), so I won't cover that here, but I will cover how to restart a deployment or trigger a kubernetes command using Github Actions.
 
 To replicate `rollout restart` part of the deploy flow, the first step is understanding Kubernetes Service Accounts. Here's an example of a service account setup that allows GitHub Actions to restart a deployment:
 
-```
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -27,18 +27,18 @@ kind: ClusterRole
 metadata:
   name: deployment-restart-role
 rules:
-- apiGroups: ["apps"]
-  resources: ["deployments"]
-  verbs: ["get", "patch"]
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["get", "patch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: deployment-restart-binding
 subjects:
-- kind: ServiceAccount
-  name: github-actions-deployer
-  namespace: default
+  - kind: ServiceAccount
+    name: github-actions-deployer
+    namespace: default
 roleRef:
   kind: ClusterRole
   name: deployment-restart-role
@@ -49,62 +49,65 @@ These configurations comprise three parts:
 
 1. The service account itself, identified by a name and a namespace.
 2. A ClusterRole, allowing the service account to get and patch deployments.
-    1. One could optionally use a Role to limit the scope of the services account to specific deployments.
+   1. One could optionally use a Role to limit the scope of the services account to specific deployments.
 3. A ClusterRoleBinding, binding the service account to the ClusterRole.
-Next, generate a token for the service account using:
+   Next, generate a token for the service account using:
 
-```
+```bash
 kubectl create token github-actions-deployer --duration=262800h
 ```
 
 With the token, create a kubeconfig file. A typical configuration looks like this:
-```
+
+```yaml
 apiVersion: v1
 clusters:
-- cluster:
-    certificate-authority-data: CA_DATA
-    server: https://K8SENDPOINT:6443
-  name: default
+  - cluster:
+      certificate-authority-data: CA_DATA
+      server: https://K8SENDPOINT:6443
+    name: default
 contexts:
-- context:
-    cluster: default
-    user: default
-  name: default
+  - context:
+      cluster: default
+      user: default
+    name: default
 current-context: default
 kind: Config
 preferences: {}
 users:
-- name: default
-  user:
-    token: TOKEN
+  - name: default
+    user:
+      token: TOKEN
 ```
+
 Test the configuration locally with:
-```
+
+```bash
 kubectl --kubeconfig=kubeconfig.yaml get deployment/DEPLOYMENT_NAME
 ```
 
 Once verified, set up the Github Action by adding the following to your workflow after the image build step:
 
-```
-    - uses: actions-hub/kubectl@master
-    env:
-        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-    with:
-        args: rollout restart deployment DEPLOYMENT_NAME
+```yaml
+- uses: actions-hub/kubectl@master
+env:
+    KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+with:
+    args: rollout restart deployment DEPLOYMENT_NAME
 ```
 
 Finally, base64 encode the kubeconfig and store it in the Github Actions secrets as`KUBE_CONFIG` in the repository settings. This will allow the Github Action to authenticate with the Kubernetes cluster and restart the deployment.
 
 Looking at the full workflow file, it should look something like this:
 
-```
+```yaml
 name: Docker Build and Push
 on:
   push:
     branches:
       - main
     tags:
-      - 'v*'
+      - "v*"
 env:
   REGISTRY: REGISTRY_URL
   IMAGE_NAME: IMAGE_NAME
@@ -148,7 +151,8 @@ This workflow will build and push the Docker image, then restart the deployment.
 One of the most useful features of Kubernetes is the ability to do hitless deployments. This means that when a new version of a deployment is deployed, the old version is not taken down until the new version is ready. This is done by having multiple replicas of the deployment running at once. This allows for a new version to be deployed, and then the old version to be taken down once the new version is ready.
 
 To do this, a deployment configuation similar to the following can be used:
-```
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -165,15 +169,16 @@ spec:
         app: APP_NAME
     spec:
       containers:
-      - name: APP_NAME
-        image: IMAGE_URL
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 3000
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 3000
+        - name: APP_NAME
+          image: IMAGE_URL
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
 ```
 
 This will create a deployment with two replicas. This means that when a new version is deployed, the old version will not be taken down until the new version is ready. Using the livenessProbe, Kubernetes will know when the new version is ready, and then take down the old version.
+
