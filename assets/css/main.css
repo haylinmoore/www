@@ -1,222 +1,439 @@
 body {
-    background-color: var(--background-color);
-    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 1rem;
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    max-width: 75ch;
+  background-color: var(--background-color);
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  max-width: 75ch;
 }
 
 a {
-    color: var(--container-backdrop);
-    text-decoration: none
+  color: var(--container-backdrop);
+  text-decoration: none;
 }
 
 p {
-    margin-top: 0.5rem;
-    text-indent: 1em; 
+  margin-top: 0.5rem;
+  text-indent: 1em;
 }
 
 h1 {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 h3,
 h2 {
-    margin-bottom: 0rem;
+  margin-bottom: 0rem;
 }
 
 pre {
-    margin-top: 0.5rem;
-    white-space: pre-wrap;
-    background-color: var(--background-color);
-    padding: 1em;
+  margin-top: 0.5rem;
+  white-space: pre-wrap;
+  background-color: var(--background-color);
+  padding: 1em;
 }
 
 code {
-    background-color: var(--background-color);
+  #background-color: var(--background-color);
 }
 
 .hero-text {
-    order: 2;
+  order: 2;
 }
 
 .hero-img {
-    order: 1;
+  order: 1;
 }
 
 .centered {
-    text-align: center;
-    display: block;
+  text-align: center;
+  display: block;
 }
 
 li::marker {
-    content: '- ';
-    font-size: 1.2em;
+  content: "- ";
+  font-size: 1.2em;
 }
 
 img {
-    width: 100%;
+  width: 100%;
 }
 
-@media screen and (min-width:768px) {
-    .hero-text {
-        order: 1;
-    }
+@media screen and (min-width: 768px) {
+  .hero-text {
+    order: 1;
+  }
 
-    .hero-img {
-        order: 2;
-    }
+  .hero-img {
+    order: 2;
+  }
 }
 
-@media screen and (min-width:768px) {
-    body {
-        width: 70%;
-    }
+@media screen and (min-width: 768px) {
+  body {
+    width: 70%;
+  }
 }
 
-@media screen and (min-width:1920px) {
-    body {
-        width: 60%;
-    }
+@media screen and (min-width: 1920px) {
+  body {
+    width: 60%;
+  }
 }
 
-@media screen and (min-width:2304px) {
-    body {
-        width: 50%;
-    }
+@media screen and (min-width: 2304px) {
+  body {
+    width: 50%;
+  }
 }
 
 .main {
-    margin: 1vw;
+  margin: 1vw;
 }
 
-@media screen and (min-width:768px) {
-    .main {
-        margin-top: 5rem;
-        margin-bottom: auto;
-        margin-left: auto;
-        margin-right: auto;
-    }
+@media screen and (min-width: 768px) {
+  .main {
+    margin-top: 5rem;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
-@media screen and (max-width:768px) {
-    .hero-img {
-        max-width: 300px;
-        margin: auto;
-    }
+@media screen and (max-width: 768px) {
+  .hero-img {
+    max-width: 300px;
+    margin: auto;
+  }
 }
 
 .footer {
-    padding: 1rem;
-    font-size: 0.75rem;
-    color: var(--nord4);
-    text-align: center;
-    margin-top: -2rem;
+  padding: 1rem;
+  font-size: 0.75rem;
+  color: var(--nord4);
+  text-align: center;
+  margin-top: -2rem;
 }
 
 .footer p {
-    line-height: 1rem;
+  line-height: 1rem;
 }
 
 .footer img {
-    border-radius: 0;
-    width: 88px;
-    height: 31px;
-    margin: 0;
-    image-rendering: auto;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    image-rendering: -webkit-optimize-contrast;
+  border-radius: 0;
+  width: 88px;
+  height: 31px;
+  margin: 0;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: -webkit-optimize-contrast;
 }
 
-.section {
-    background-color: var(--container-bg);
-    box-shadow: 16px 16px var(--container-backdrop);
-    box-sizing: border-box;
-    padding: 1rem;
-    margin-bottom: 4em;
+div.section {
+  background-color: var(--container-bg);
+  box-shadow: 16px 16px var(--container-backdrop);
+  box-sizing: border-box;
+  padding: 1rem;
+  margin-bottom: 4em;
 }
-
 
 :root {
-    --background-color: #E5E1DA;
-    --container-bg: #fafafa;
-    --container-header-bg: var(--container-bg);
-    --container-header-color: #191919;
-    --container-backdrop: oklch(55% 0.1208 202.44);
-    --text-color: #191919;
+  --background-color: #e5e1da;
+  --container-bg: #fafafa;
+  --container-header-bg: var(--container-bg);
+  --container-header-color: #191919;
+  --container-backdrop: oklch(55% 0.1208 202.44);
+  --text-color: #191919;
 
-    --scheme-white: #fafafa;
-    --scheme-blue: oklch(0.75 0.19 223.62);
-    --scheme-purple: oklch(0.69 0.2 298.69);
-    --scheme-red: oklch(0.7 0.24 25.43);
-    --scheme-pink: oklch(82.67% 0.1518 349.81);
+  --scheme-white: #fafafa;
+  --scheme-blue: oklch(0.75 0.19 223.62);
+  --scheme-purple: oklch(0.69 0.2 298.69);
+  --scheme-red: oklch(0.7 0.24 25.43);
+  --scheme-pink: oklch(82.67% 0.1518 349.81);
 }
 
 body[colorscheme="blue"] {
-    --background-color: #19191e;
-    --container-bg: #302D33;
-    --container-header-bg: var(--container-bg);
-    --container-header-color: #fafafa;
-    --container-backdrop: var(--scheme-blue);
-    --text-color: #fafafa
+  --background-color: #19191e;
+  --container-bg: #302d33;
+  --container-header-bg: var(--container-bg);
+  --container-header-color: #fafafa;
+  --container-backdrop: var(--scheme-blue);
+  --text-color: #fafafa;
 }
 
 body[colorscheme="purple"] {
-    --background-color: #19191e;
-    --container-bg: #242432;
-    --container-header-bg: var(--container-bg);
-    --container-header-color: #fafafa;
-    --container-backdrop: var(--scheme-purple);
-    --text-color: #fafafa
+  --background-color: #19191e;
+  --container-bg: #242432;
+  --container-header-bg: var(--container-bg);
+  --container-header-color: #fafafa;
+  --container-backdrop: var(--scheme-purple);
+  --text-color: #fafafa;
 }
 
 body[colorscheme="red"] {
-    --background-color: #191516;
-    --container-bg: #2a2432;
-    --container-header-bg: var(--container-bg);
-    --container-header-color: #fafafa;
-    --container-backdrop: var(--scheme-red);
-    --text-color: #fafafa
+  --background-color: #191516;
+  --container-bg: #2a2432;
+  --container-header-bg: var(--container-bg);
+  --container-header-color: #fafafa;
+  --container-backdrop: var(--scheme-red);
+  --text-color: #fafafa;
 }
 
-body[colorscheme="pink"]  {
-    --background-color: #19191e;
-    --container-bg: #2e2833;
-    --container-header-bg: var(--container-bg);
-    --container-header-color: #fafafa;
-    --container-backdrop: var(--scheme-pink);
-    --text-color: #fafafa
+body[colorscheme="pink"] {
+  --background-color: #19191e;
+  --container-bg: #2e2833;
+  --container-header-bg: var(--container-bg);
+  --container-header-color: #fafafa;
+  --container-backdrop: var(--scheme-pink);
+  --text-color: #fafafa;
 }
 
-/* body[colorscheme="white"] pre {
-    color: var(--container-bg);
-} */
+body {
+  --lighter: color-mix(in lch, var(--container-backdrop) 75%, white);
+  --lightest: color-mix(in lch, var(--container-backdrop) 50%, white);
+}
+
+body[colorscheme="white"] {
+  --lightest: color-mix(in lch, var(--container-backdrop) 80%, red);
+}
 
 body[colorscheme="white"] .themecolors div[theme="white"] {
-    border: 1px solid #191919;
+  border: 1px solid #191919;
 }
 
 .themecolors {
-    bottom: 16px;
-    left: 16px;
-    display: block;
-    margin: auto;
-    position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: block;
+  margin: auto;
+  position: absolute;
 }
 
 .themecolors div {
-    width: 16px;
-    height: 16px;
-    float: left;
-    margin-left: 8px;
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin-left: 8px;
 }
 
 .themecolors div:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
+
+.string {
+  color: var(--lighter);
+}
+
+.string.regexp {
+  color: var(--lighter);
+}
+
+.variable.function {
+  color: var(--lightest);
+}
+
+.keyword {
+  color: var(--container-backdrop);
+}
+
+.storage {
+  color: var(--container-backdrop);
+}
+
+.keyword.control.class,
+.entity.name,
+.entity.name.class,
+.entity.name.type.class {
+  color: var(--lightest);
+}
+
+.entity.other.attribute-name {
+  color: var(--lightest);
+}
+
+.support,
+.support.type,
+.support.class {
+  color: var(--container-backdrop);
+}
+
+.entity.name.function {
+  color: var(--lightest);
+}
+
+.punctuation.definition.variable {
+  color: var(--container-backdrop);
+}
+
+.constant,
+.constant.language,
+.meta.preprocessor {
+  color: var(--lightest);
+}
+
+.support.function {
+  color: var(--container-backdrop);
+}
+
+.string.quoted.double,
+.string.quoted.single {
+  color: var(--lighter);
+}
+
+.support.constant.color,
+.invalid.deprecated.color.w3c-non-standard-color-name.scss {
+  color: var(--lightest);
+}
+
+.entity.name.tag.css,
+.entity.name.tag.scss,
+.source.less .keyword.control.html.elements,
+.source.sass .keyword.control.untitled {
+  color: var(--lightest);
+}
+
+.entity.other.attribute-name.class {
+  color: var(--lightest);
+}
+
+.entity.other.attribute-name.id {
+  color: var(--lightest);
+}
+
+.text.html.basic .entity.other.attribute-name.html,
+.meta.tag.xml .entity.other.attribute-name {
+  color: var(--lightest);
+}
+
+.keyword.other.special-method.ruby {
+  color: var(--container-backdrop);
+}
+
+.variable.other.constant.ruby {
+  color: var(--lightest);
+}
+
+.constant.other.symbol.ruby {
+  color: var(--lighter);
+}
+
+.meta.array .support.function.construct.php {
+  color: var(--lightest);
+}
+
+.meta.preprocessor.c.include .string.quoted.other.lt-gt.include.c,
+.meta.preprocessor.c.include .punctuation.definition.string.begin.c,
+.meta.preprocessor.c.include .punctuation.definition.string.end.c {
+  color: var(--lighter);
+}
+
+.other.add {
+  color: var(--lighter);
+}
+
+.meta.group.braces.tex {
+  color: var(--lightest);
+}
+
+.string.other.math.tex {
+  color: var(--lightest);
+}
+
+.text.tex.latex .constant.other.math.tex,
+.constant.other.general.math.tex,
+.constant.other.general.math.tex,
+.constant.character.math.tex {
+  color: var(--lighter);
+}
+
+.string.other.math.tex {
+  color: var(--lightest);
+}
+
+.keyword.control.label.latex,
+.text.tex.latex .constant.other.general.math.tex {
+  color: var(--lighter);
+}
+
+.support.function.be.latex {
+  color: var(--container-backdrop);
+}
+
+.support.function.general.tex {
+  color: var(--lighter);
+}
+
+.keyword.control.ref.latex {
+  color: var(--lighter);
+}
+
+.storage.type.class.python,
+.storage.type.function.python,
+.storage.modifier.global.python {
+  color: var(--container-backdrop);
+}
+
+.support.type.exception.python {
+  color: var(--lightest);
+}
+
+.storage.modifier.c++ {
+  color: var(--container-backdrop);
+}
+
+.markup.changed {
+  color: var(--lighter);
+}
+
+.markup.inserted {
+  color: var(--container-backdrop);
+}
+
+.markup.heading,
+.punctuation.definition.heading.markdown {
+  color: var(--lightest);
+}
+
+.markup.quote {
+  color: var(--container-backdrop);
+}
+
+.markup.italic {
+  font-style: italic;
+}
+
+.markup.bold {
+  font-weight: bold;
+}
+
+.markup.underline.link.markdown,
+.meta.link.reference .constant.other.reference.link.markdown {
+  color: var(--lighter);
+}
+
+.sublimelinter.underline.warning {
+  background-color: var(--lightest);
+}
+
+.sublimelinter.mark.warning {
+  color: var(--lightest);
+}
+
+.entity.name.filename.find-in-files {
+  color: var(--lighter);
+}
+
+.markup.inserted.git_gutter {
+  color: var(--container-backdrop);
+}
+
+.markup.changed.git_gutter {
+  color: var(--lightest);
+}
+

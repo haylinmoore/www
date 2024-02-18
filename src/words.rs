@@ -28,6 +28,7 @@ pub fn get(posts: Vec<Post>, slug: &str) -> Option<Post> {
             return Some(post);
         }
     }
+
     None
 }
 

@@ -14,23 +14,21 @@ use std::sync::Arc;
 use tokio::sync::RwLock;
 
 use tower_http::services::ServeDir;
+mod badges;
+mod rss;
 mod site;
 mod sitemap;
 mod things;
 mod update;
 mod utils;
-mod words;
-mod rss;
-mod badges;
 mod webring;
+mod words;
 
-async fn health(
-    State(state): State<Arc<RwLock<SiteState>>>,
-) -> Markup {
+async fn health(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
     let state = state.read().await;
 
     html! {
-        "Ok"
+       "Ok"
         br;
         "Build Info: " (std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")))
         br;
@@ -82,7 +80,8 @@ async fn main() {
 
     state.sitemap = sitemap::init(state.clone()).expect("Failed to init sitemap");
 
-    state.badges = badges::read_badges_from_file("./content/badges.csv").expect("Failed to read badges");
+    state.badges =
+        badges::read_badges_from_file("./content/badges.csv").expect("Failed to read badges");
 
     let state = Arc::new(RwLock::new(state));
 
@@ -135,7 +134,5 @@ async fn middleware_apply_client_state(
 
     request.extensions_mut().insert(state);
 
-    let response = next.run(request).await;
-
-    response
+    next.run(request).await
 }
