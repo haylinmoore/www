@@ -132,7 +132,7 @@ document.getElementById("calculate").addEventListener("click", ()=>{
 
   // Display the results
   document.getElementById("received").innerHTML = `[ ${recv.join(" ")} ]`
-  document.getElementById("transmission").innerHTML = transmit.map((v, i)=>`Sender ${String(i).padStart(state.senders > 9? 2: 1, " ")}: [${v.map(tritSameLength).join(" ")} ]`).join("\n")
+  document.getElementById("transmission").innerHTML = transmit.map((v, i)=>`Sender ${String(i).padStart(state.senders > 9? 2: 1, " ")}: ${tritSameLength(code[i])} * [${state.codes[i].map(tritSameLength).join(" ")} ] = [${v.map(tritSameLength).join(" ")} ]`).join("\n")
   document.getElementById("decoded").innerHTML = recovered_data.join("\n");
   document.getElementById("calculation").style.display = "block";
 })
