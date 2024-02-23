@@ -38,7 +38,14 @@ async fn health(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
         br;
         "Last Updated: " (state.last_updated)
         br;
-        "Webring: " (if state.webring.is_some() { "Some" } else { "None" })
+        "Webring: " (if state.webring.is_some() { format!(
+            "{} <- {} -> {}",
+            state.webring.as_ref().unwrap().prev.name,
+            state.webring.as_ref().unwrap().member.name,
+            state.webring.as_ref().unwrap().next.name,
+        )
+        } else { "None".to_string() }
+        )
     }
 }
 
