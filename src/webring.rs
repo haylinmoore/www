@@ -15,8 +15,7 @@ pub struct MemberGetResponse {
 }
 
 pub async fn get_webring_link() -> Option<MemberGetResponse> {
-    let res = reqwest::get("https://umaring.hamy.cc/hampton")
-        .await;
+    let res = reqwest::get("https://umaring.mkr.cx/hampton").await;
 
     if res.is_err() {
         return None;
@@ -39,6 +38,7 @@ pub async fn get_webring_link() -> Option<MemberGetResponse> {
     if res.member.id == res.prev.id {
         return None;
     }
-    
+
     Some(res)
 }
+
