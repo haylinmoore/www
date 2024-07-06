@@ -38,7 +38,7 @@ pub async fn home(
                 }
             }
             div class="pure-u-1 pure-u-md-1-3 hero-img" {
-                img class="pure-img" src="/assets/img/hammy.png" alt="avatar";
+                img class="pure-img" src="/assets/img/haylin_v2.png" alt="avatar";
             }
             div class="themecolors" {
                 div style="background-color: var(--scheme-blue)" theme="blue" {}
