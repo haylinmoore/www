@@ -144,11 +144,11 @@ div.section {
 }
 
 :root {
-  --background-color: #e5e1da;
+  --background-color: #e5dae2;
   --container-bg: #fafafa;
   --container-header-bg: var(--container-bg);
   --container-header-color: #191919;
-  --container-backdrop: oklch(55% 0.1208 202.44);
+  --container-backdrop: oklch(48.07% 0.213 349.81);
   --text-color: #191919;
 
   --scheme-white: #fafafa;
