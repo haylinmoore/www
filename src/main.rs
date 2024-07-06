@@ -23,6 +23,7 @@ mod update;
 mod utils;
 mod webring;
 mod words;
+mod name;
 
 async fn health(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
     let state = state.read().await;
@@ -37,6 +38,8 @@ async fn health(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
         "Commit: " (std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")))
         br;
         "Last Updated: " (state.last_updated)
+        br;
+        "Name: " (state.name.uppercase_full_str())
         br;
         "Webring: " (if state.webring.is_some() { format!(
             "{} <- {} -> {}",
@@ -56,6 +59,7 @@ pub struct ClientState {
 
 #[derive(Clone)]
 pub struct SiteState {
+    name: name::Name,
     last_updated: String,
     things: Vec<things::Thing>,
     words: Vec<words::Post>,
@@ -75,6 +79,7 @@ async fn main() {
     let words = words::init("./content/words/");
 
     let mut state = SiteState {
+        name: name::Name::from_env(),
         last_updated: String::from(""),
         things,
         words,

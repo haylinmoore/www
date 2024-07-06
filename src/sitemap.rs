@@ -5,19 +5,17 @@ use sitemap;
 use std::sync::Arc;
 use tokio::sync::RwLock;
 
-const BASE_URL: &str = "https://hamptonmoore.com";
-
 pub fn init(state: SiteState) -> Result<Vec<u8>> {
     let mut sm: Vec<u8> = Vec::new();
     let smw = sitemap::writer::SiteMapWriter::new(&mut sm);
     let mut urlwriter = smw.start_urlset()?;
-    urlwriter.url(BASE_URL)?;
+    urlwriter.url(format!("https://{}", state.name.domain()))?;
     let static_pages = vec!["things", "posts"];
     for page in static_pages {
-        urlwriter.url(format!("{}/{}/", BASE_URL, page))?;
+        urlwriter.url(format!("https://{}/{}/", state.name.domain(), page))?;
     }
     for project in state.words {
-        urlwriter.url(format!("{}/posts/{}/", BASE_URL, project.slug))?;
+        urlwriter.url(format!("https://{}/posts/{}/", state.name.domain(), project.slug))?;
     }
     urlwriter.end()?;
     Ok(sm)

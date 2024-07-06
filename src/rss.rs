@@ -15,7 +15,10 @@ pub async fn get(State(state): State<Arc<RwLock<SiteState>>>) -> Response {
         .perform_indent(true)
         .create_writer(&mut buf);
 
+    let state = state.read().await;
+
     let pubdate = Utc::now().to_rfc2822();
+    let link = format!("https://{}/posts/", state.name.domain());
     let feeds: Vec<XmlEvent> = vec![
         XmlEvent::StartDocument{
             version: xml::common::XmlVersion::Version10,
@@ -26,15 +29,17 @@ pub async fn get(State(state): State<Arc<RwLock<SiteState>>>) -> Response {
         XmlEvent::start_element("channel").into(),
 
         XmlEvent::start_element("title").into(),
-        XmlEvent::characters("Hampton's blog").into(),
+        XmlEvent::characters(&state.name.uppercase_str()).into(),
+        XmlEvent::characters("'s blog").into(),
         XmlEvent::end_element().into(),
 
         XmlEvent::start_element("link").into(),
-        XmlEvent::characters("https://hamptonmoore.com/posts/").into(),
+        XmlEvent::characters(&link).into(),
         XmlEvent::end_element().into(),
 
         XmlEvent::start_element("description").into(),
-        XmlEvent::characters("Hampton's writings, rambles, and sometimes tutorials").into(),
+        XmlEvent::characters(&state.name.uppercase_str()).into(),
+        XmlEvent::characters("'s writings, rambles, and sometimes tutorials").into(),
         XmlEvent::end_element().into(),
 
         XmlEvent::start_element("language").into(),
@@ -58,11 +63,9 @@ pub async fn get(State(state): State<Arc<RwLock<SiteState>>>) -> Response {
         writer.write(feed).unwrap();
     }
 
-    let state = state.read().await;
-
     for post in &state.words {
         let title = post.title.clone();
-        let link = format!("https://hamptonmoore.com/posts/{}", post.slug);
+        let link = format!("https://{}/posts/{}", state.name.domain(), post.slug);
         let date = post.date.to_rfc2822();
         let content = post.body.clone();
 

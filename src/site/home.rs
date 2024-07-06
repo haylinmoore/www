@@ -26,7 +26,7 @@ pub async fn home(
     let content = html! {
         div class="pure-g hero section" style="position: relative" {
             div class="pure-u-1 pure-u-md-2-3 hero-text" style="margin-bottom: 32px;" {
-                h1 { "Hampton Moore" }
+                h1 { (state.name.uppercase_full_str()) }
                 p {
                     "I am an network automations engineer, software developer, and student (CS BS @ UMass Amherst).
                     Since Summer 2022 I have been working at "
@@ -38,7 +38,7 @@ pub async fn home(
                 }
             }
             div class="pure-u-1 pure-u-md-1-3 hero-img" {
-                img class="pure-img" src="/assets/img/hammy.png" alt="Hampton's avatar";
+                img class="pure-img" src="/assets/img/hammy.png" alt="avatar";
             }
             div class="themecolors" {
                 div style="background-color: var(--scheme-blue)" theme="blue" {}

@@ -10,8 +10,7 @@ pub struct PageContext {
 }
 
 pub fn base(context: PageContext, content: Markup, state: SiteState, client: ClientState) -> Markup {
-    let description = "Hampton Moore";
-    let title = format!("{} | Hampton Moore", context.title);
+    let title = format!("{} | {}", context.title, state.name.uppercase_full_str());
 
     let commit = if let Ok(commit) = std::env::var("COMMIT") {
         commit[..8].to_string()
@@ -35,12 +34,11 @@ pub fn base(context: PageContext, content: Markup, state: SiteState, client: Cli
                     link rel="stylesheet" href="/assets/css/pure-min.css";
                     link rel="stylesheet" href="/assets/css/main.css";
                     link rel="stylesheet" href="/assets/css/grids-responsive-min.css";
-                    link rel="alternate" title="Hampton's Blog" type="application/rss+xml" href="/feed.xml";
-                    link rel="canonical" href=(format!("https://hamptonmoore.com{}", context.canonical));
+                    link rel="alternate" title=(format!("{}'s Blog", state.name.uppercase_str())) type="application/rss+xml" href="/feed.xml";
+                    link rel="canonical" href=(format!("https://haylinmoore.com{}", context.canonical));
 
                     title { (title) };
-                    meta name="description" content=(description);
-                    meta name="author" content="Hampton Moore";
+                    meta name="author" content=(state.name.uppercase_full_str());
 
                     link rel="manifest" href="/assets/favicon/site.webmanifest";
 
@@ -48,7 +46,7 @@ pub fn base(context: PageContext, content: Markup, state: SiteState, client: Cli
 
                     meta property="og:type" content="website";
                     meta property="og:title" content=(title);
-                    meta property="og:description" content=(description);
+                    meta property="og:description" content=(state.name.uppercase_full_str());
                     meta property="og:theme-color" content="#19191e";
                 }
 
