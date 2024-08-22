@@ -359,7 +359,7 @@ checksum = "acbf1af155f9b9ef647e42cdc158db4b64a1b61f743629225fde6f3e0be2a7c7"
 [[package]]
 name = "comrak"
 version = "0.20.0"
-source = "git+https://github.com/hamptonmoore/comrak?branch=main#d72255c378daff489a3d5df3a56484e6c21caa1c"
+source = "git+https://github.com/haylinmoore/comrak?branch=main#d72255c378daff489a3d5df3a56484e6c21caa1c"
 dependencies = [
  "clap",
  "derive_builder",

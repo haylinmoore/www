@@ -75,9 +75,9 @@ pub fn base(context: PageContext, content: Markup, state: SiteState, client: Cli
                                     br;
                                 }
                                 "Source code "
-                                a target="_blank" href="https://github.com/hamptonmoore/www" { "available here" }
+                                a target="_blank" href="https://github.com/haylinmoore/www" { "available here" }
                                 ", released under the "
-                                a target="_blank" href="https://github.com/hamptonmoore/www/blob/main/COPYING" { "GNU AGPLv3 license" }
+                                a target="_blank" href="https://github.com/haylinmoore/www/blob/main/COPYING" { "GNU AGPLv3 license" }
                                 br;
                                 "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
                                 br;

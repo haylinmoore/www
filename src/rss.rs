@@ -51,7 +51,7 @@ pub async fn get(State(state): State<Arc<RwLock<SiteState>>>) -> Response {
         XmlEvent::end_element().into(),
 
         XmlEvent::start_element("generator").into(),
-        XmlEvent::characters("https://github.com/hamptonmoore/www").into(),
+        XmlEvent::characters("https://github.com/haylinmoore/www").into(),
         XmlEvent::end_element().into(),
 
         XmlEvent::start_element("ttl").into(),
