@@ -113,6 +113,7 @@ async fn main() {
 
     let app = Router::new()
         .nest_service("/assets", ServeDir::new("./assets"))
+        .route("/88x31.png", get(badges::my88x31))
         .route("/health", get(health))
         .route("/posts/", get(site::words::index))
         .route("/posts/:slug", get(site::words::post))

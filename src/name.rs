@@ -24,12 +24,6 @@ impl Name {
             Name::Haylin => "Haylin Moore"
         }
     }
-    pub fn lowercase_str(&self) -> &'static str {
-        match self {
-            Name::Hampton => "hampton",
-            Name::Haylin => "haylin"
-        }
-    }
     pub fn domain(&self) -> &'static str {
         match self {
             Name::Hampton => "hamptonmoore.com",
