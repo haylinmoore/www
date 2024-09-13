@@ -3,6 +3,7 @@ use maud::{html, Markup};
 pub mod home;
 pub mod things;
 pub mod words;
+pub mod nginx;
 
 pub struct PageContext {
     title: String,

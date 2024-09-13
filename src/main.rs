@@ -121,6 +121,7 @@ async fn main() {
         .route("/things/", get(site::things::index))
         .route("/", get(site::home::home))
         .route("/sitemap.xml", get(sitemap::get))
+        .route("/index.html", get(site::nginx::get))
         .route("/feed.xml", get(rss::get))
         .with_state(state)
         .layer(middleware::from_fn(middleware_apply_client_state));
