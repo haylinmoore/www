@@ -15,27 +15,24 @@ pub struct MemberGetResponse {
 }
 
 pub async fn get_webring_link() -> Option<MemberGetResponse> {
-    let res = reqwest::get("https://umaring.mkr.cx/hampton").await;
+    // Make the request
+    let res = ureq::get("https://umaring.mkr.cx/hampton").call();
 
-    if res.is_err() {
+    if let Err(_) = res {
         return None;
     }
 
-    let res = res.unwrap();
+    // Parse JSON response
+    let response_body = res.unwrap().into_json();
 
-    // Parse JSON to MemberGetResponse
-    let res = res.json::<MemberGetResponse>().await;
-
-    if res.is_err() {
+    if let Err(_) = response_body {
         return None;
     }
 
-    let res = res.unwrap();
+    let res: MemberGetResponse = response_body.unwrap();
 
-    if res.member.id == res.next.id {
-        return None;
-    }
-    if res.member.id == res.prev.id {
+    // Check if member ID is the same as prev or next, return None if it is
+    if res.member.id == res.next.id || res.member.id == res.prev.id {
         return None;
     }
 
