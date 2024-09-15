@@ -20,7 +20,7 @@ pub fn base(
     let title = format!("{} | {}", context.title, state.name.uppercase_full_str());
 
     let commit = if let Ok(commit) = std::env::var("COMMIT") {
-        commit[..8].to_string()
+        commit.chars().take(8).collect()
     } else {
         String::from("Unknown")
     };
