@@ -28,13 +28,11 @@ pub async fn home(
             div class="pure-u-1 pure-u-md-2-3 hero-text" style="margin-bottom: 32px;" {
                 h1 { (state.name.uppercase_full_str()) }
                 p {
-                    "I am an network automations engineer, software developer, and student (CS BS @ UMass Amherst).
-                    Since Summer 2022 I have been working at "
-                    a href="https://arista.com" target = "_blank" { "Arista Networks" }
-                    " focusing on how to make network automation easier to use and integrate with existing systems.
-                    In my free-time I run "
-                    a href="https://bgp.tools/as/923" target = "_blank" { "AS923" }
-                    " and provide virtual hosting for a few projects."
+                    "I'm a software and network engineer from the east coast. I currently work at "
+                    a target="_blank" href="https://qumulo.com" { "Qumulo" } " doing system integration and debugging networks."
+                    "Previously, I worked at " a target="_blank" href="https://arista.com" { "Arista Networks" } " doing similar things."
+                    br {}
+                    "let the packets flow - we could all use more whimsy - live laugh love it all"
                 }
             }
             div class="pure-u-1 pure-u-md-1-3 hero-img" {
