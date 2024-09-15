@@ -121,7 +121,7 @@ async fn main() {
         .route("/things/", get(site::things::index))
         .route("/", get(site::home::home))
         .route("/sitemap.xml", get(sitemap::get))
-        .route("/index.html", get(site::nginx::get))
+        .route("/index.nginx-debian.html", get(site::nginx::get))
         .route("/feed.xml", get(rss::get))
         .fallback(get(site::error404::e404))
         .with_state(state)
