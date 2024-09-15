@@ -1,19 +1,20 @@
-# Build stage
-FROM rust:1.75-alpine3.19 as builder
+FROM lukemathwalker/cargo-chef:0.1.67-rust-alpine3.19 AS planner
+WORKDIR /app
+COPY src/ src/
+COPY Cargo.toml Cargo.toml
+COPY Cargo.lock Cargo.lock
+RUN cargo chef prepare --recipe-path recipe.json
 
-# RUN apt-get update
-# RUN apt-get install pkg-config libssl-dev -y
-RUN apk add musl-dev
-# Copy the source code
-ADD . .
+FROM lukemathwalker/cargo-chef:0.1.67-rust-alpine3.19 AS builder
+WORKDIR /app
+COPY --from=planner /app/recipe.json recipe.json
+RUN cargo chef cook --release --target x86_64-unknown-linux-musl --recipe-path recipe.json
+COPY src/ src/
+COPY Cargo.toml Cargo.toml
+COPY Cargo.lock Cargo.lock
+RUN --mount=type=cache,target=/usr/local/cargo/registry --mount=type=cache,target=/src/target cargo build --release --target x86_64-unknown-linux-musl 
 
-# Build the project
-RUN --mount=type=cache,target=/usr/local/cargo/registry \
-    --mount=type=cache,target=/src/target \
-    cargo build --release
-
-# Final stage
-FROM alpine:3.19
+FROM alpine AS runtime
 
 ARG REF=""
 ARG COMMIT=""
@@ -25,13 +26,10 @@ ENV TIME=${TIME}
 ENV CT=${CT}
 ENV TZ="America/New_York"
 
-# Copy the binary from the build stage
-COPY --from=builder /target/release/www /usr/local/bin/www
-
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/www /usr/local/bin/
 COPY ./assets /usr/local/bin/assets
 COPY ./content /usr/local/bin/content
 
-# Set the command to run the binary
 WORKDIR /usr/local/bin
-CMD ["www"]
+CMD ["/usr/local/bin/www"]
 EXPOSE 3000
