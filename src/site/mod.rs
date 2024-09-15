@@ -1,16 +1,22 @@
 use crate::{ClientState, SiteState};
 use maud::{html, Markup};
+pub mod error404;
 pub mod home;
+pub mod nginx;
 pub mod things;
 pub mod words;
-pub mod nginx;
 
 pub struct PageContext {
     title: String,
     canonical: String,
 }
 
-pub fn base(context: PageContext, content: Markup, state: SiteState, client: ClientState) -> Markup {
+pub fn base(
+    context: PageContext,
+    content: Markup,
+    state: SiteState,
+    client: ClientState,
+) -> Markup {
     let title = format!("{} | {}", context.title, state.name.uppercase_full_str());
 
     let commit = if let Ok(commit) = std::env::var("COMMIT") {
@@ -93,11 +99,7 @@ pub fn base(context: PageContext, content: Markup, state: SiteState, client: Cli
     }
 }
 
-pub fn four04(
-    path: String,
-    state: SiteState,
-    client: ClientState,
-) -> Markup {
+pub fn four04(path: String, state: SiteState, client: ClientState) -> Markup {
     let content = html! {
         div class="pure-g hero section" {
             div class="pure-u-1" {
@@ -107,8 +109,13 @@ pub fn four04(
         }
     };
 
-    base(PageContext {
-        title: "404".to_string(),
-        canonical: format!("/{}", path),
-    }, content, state, client)
+    base(
+        PageContext {
+            title: "404".to_string(),
+            canonical: format!("/{}", path),
+        },
+        content,
+        state,
+        client,
+    )
 }

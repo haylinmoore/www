@@ -100,8 +100,13 @@ pub async fn home(
 
     };
 
-    base(PageContext {
-        title: "Home".to_string(),
-        canonical: "/".to_string(),
-    }, content, state.clone(), client_state)
+    base(
+        PageContext {
+            title: "Home".to_string(),
+            canonical: "/".to_string(),
+        },
+        content,
+        state.clone(),
+        client_state,
+    )
 }

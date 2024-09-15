@@ -2,7 +2,7 @@ use std::env;
 
 #[derive(Debug, Clone)]
 pub enum Name {
-    Haylin
+    Haylin,
 }
 impl Name {
     pub fn from_env() -> Name {
@@ -12,17 +12,17 @@ impl Name {
     }
     pub fn uppercase_str(&self) -> &'static str {
         match self {
-            Name::Haylin => "Haylin"
+            Name::Haylin => "Haylin",
         }
     }
     pub fn uppercase_full_str(&self) -> &'static str {
         match self {
-            Name::Haylin => "Haylin Moore"
+            Name::Haylin => "Haylin Moore",
         }
     }
     pub fn domain(&self) -> &'static str {
         match self {
-            Name::Haylin => "haylinmoore.com"
+            Name::Haylin => "haylinmoore.com",
         }
     }
 }

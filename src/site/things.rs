@@ -37,8 +37,13 @@ pub async fn index(
         }
     };
 
-    base(PageContext {
-        title: "Things".to_string(),
-        canonical: "/things/".to_string(),
-    }, content, state.clone(), client_state)
+    base(
+        PageContext {
+            title: "Things".to_string(),
+            canonical: "/things/".to_string(),
+        },
+        content,
+        state.clone(),
+        client_state,
+    )
 }

@@ -41,4 +41,3 @@ pub async fn get_webring_link() -> Option<MemberGetResponse> {
 
     Some(res)
 }
-

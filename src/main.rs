@@ -15,6 +15,7 @@ use tokio::sync::RwLock;
 
 use tower_http::services::ServeDir;
 mod badges;
+mod name;
 mod rss;
 mod site;
 mod sitemap;
@@ -23,7 +24,6 @@ mod update;
 mod utils;
 mod webring;
 mod words;
-mod name;
 
 async fn health(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
     let state = state.read().await;
@@ -123,6 +123,7 @@ async fn main() {
         .route("/sitemap.xml", get(sitemap::get))
         .route("/index.html", get(site::nginx::get))
         .route("/feed.xml", get(rss::get))
+        .fallback(get(site::error404::e404))
         .with_state(state)
         .layer(middleware::from_fn(middleware_apply_client_state));
 

@@ -70,7 +70,6 @@ pub fn read_badges_from_file(file_path: &str) -> io::Result<Vec<Badge>> {
             link = None;
         }
 
-
         badges.push(Badge { alt, link, src });
     }
 

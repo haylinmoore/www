@@ -1,6 +1,6 @@
 use axum::{body, response::Response};
 
-const NGINX : &str = r#"<!DOCTYPE html>
+const NGINX: &str = r#"<!DOCTYPE html>
 <html>
 <head>
 <title>Welcome to nginx!</title>
@@ -26,7 +26,6 @@ Commercial support is available at
 "#;
 
 pub async fn get() -> Response {
-
     Response::builder()
         .header("server", "nginx")
         .body(body::Body::from(NGINX))

@@ -33,7 +33,6 @@ pub fn read_things_from_file(file_path: &str) -> io::Result<Vec<Thing>> {
         let timezone_east = FixedOffset::east_opt(8 * 60 * 60).unwrap();
         let date = timezone_east.from_local_datetime(&date).unwrap();
 
-
         let link = parts[1].to_string();
         let title = parts[2].to_string();
         let mut description = parts.get(3).map(|s| s.to_string());
