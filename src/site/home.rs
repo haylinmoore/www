@@ -29,8 +29,8 @@ pub async fn home(
                 h1 { (state.name.uppercase_full_str()) }
                 p {
                     "I'm a software and network engineer from the east coast. I currently work at "
-                    a target="_blank" href="https://qumulo.com" { "Qumulo" } " doing system integration and debugging networks."
-                    "Previously, I worked at " a target="_blank" href="https://arista.com" { "Arista Networks" } " doing similar things."
+                    a target="_blank" href="https://qumulo.com" { "Qumulo" } " doing system integration and debugging networks. "
+                    "Previously, I worked at " a target="_blank" href="https://arista.com" { "Arista Networks" } " doing similar things. "
                     br {}
                     "let the packets flow - we could all use more whimsy - live laugh love it all"
                 }
