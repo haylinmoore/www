@@ -47,6 +47,12 @@ pub fn read_badges_from_file(file_path: &str) -> io::Result<Vec<Badge>> {
         src: "/88x31.png".to_string(),
     });
 
+    badges.push(Badge {
+        alt: "Haylin".to_string(),
+        link: None,
+        src: "/assets/img/badges/haylin.png".to_string(),
+    });
+
     for line in reader.lines().skip(1) {
         // Skip the header line
         let line = line?;
