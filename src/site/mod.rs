@@ -43,11 +43,10 @@ pub fn base(
                     link rel="stylesheet" href="/assets/css/grids-responsive-min.css";
                     link rel="alternate" title=(format!("{}'s Blog", state.name.uppercase_str())) type="application/rss+xml" href="/feed.xml";
                     link rel="canonical" href=(format!("https://haylinmoore.com{}", context.canonical));
+                    link rel="icon" type="image/png" href="/assets/img/favicon.png";
 
                     title { (title) };
                     meta name="author" content=(state.name.uppercase_full_str());
-
-                    link rel="manifest" href="/assets/favicon/site.webmanifest";
 
                     meta name="theme-color" content="#19191e";
 
