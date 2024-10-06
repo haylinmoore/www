@@ -66,10 +66,10 @@ pub fn base(
                                     // check if the link is Some
                                     @if let Some(link) = &badge.link {
                                         a href=(link) target="_blank" {
-                                            img loading="lazy" src=(badge.src);
+                                            img loading="lazy" src=(badge.src) alt=(badge.alt);
                                         }
                                     } @else {
-                                        img loading="lazy" src=(badge.src);
+                                        img loading="lazy" src=(badge.src) alt=(badge.alt);
                                     }
                                 }
                             }
