@@ -42,7 +42,7 @@ pub fn base(
                     link rel="stylesheet" href="/assets/css/main.css";
                     link rel="stylesheet" href="/assets/css/grids-responsive-min.css";
                     link rel="alternate" title=(format!("{}'s Blog", state.name.uppercase_str())) type="application/rss+xml" href="/feed.xml";
-                    link rel="canonical" href=(format!("https://haylinmoore.com{}", context.canonical));
+                    link rel="canonical" href=(format!("https://hayl.in{}", context.canonical));
                     link rel="icon" type="image/png" href="/assets/img/favicon.png";
 
                     title { (title) };

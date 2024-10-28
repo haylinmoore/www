@@ -22,7 +22,7 @@ impl Name {
     }
     pub fn domain(&self) -> &'static str {
         match self {
-            Name::Haylin => "haylinmoore.com",
+            Name::Haylin => "hayl.in",
         }
     }
 }
