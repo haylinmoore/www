@@ -6,8 +6,8 @@ on:
     tags:
       - 'v*'
 env:
-  REGISTRY: registry.hamptonmoore.com
-  IMAGE_NAME: blog
+  REGISTRY: registry.hayl.in
+  IMAGE_NAME: www
 
 jobs:
   build-and-push:
@@ -23,7 +23,7 @@ jobs:
       - name: Login to the Docker registry
         uses: docker/login-action@v2
         with:
-          registry: registry.hamptonmoore.com
+          registry: registry.hayl.in
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 

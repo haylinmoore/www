@@ -79,7 +79,7 @@ async fn main() {
     let words = words::init("./content/words/");
 
     let mut state = SiteState {
-        name: name::Name::from_env(),
+        name: name::Name::Haylin,
         last_updated: String::from(""),
         things,
         words,
