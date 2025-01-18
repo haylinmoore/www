@@ -4,26 +4,7 @@ type: docker
 name: build-and-push
 
 steps:
-- name: build www-cache
-  image: plugins/docker
-  settings:
-    registry: registry.hayl.in
-    repo: registry.hayl.in/www-cache
-    target: www-cache
-    tags:
-      - "${DRONE_BRANCH}"
-    dockerfile: Dockerfile
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-    build_args:
-    - COMMIT=${DRONE_COMMIT_SHA}
-    - REF=${DRONE_COMMIT_REF}
-    - TIME=${DRONE_BUILD_STARTED}
-    cache_from:
-      - "registry.hayl.in/www-cache:${DRONE_BRANCH}"
-- name: build www
+- name: build-and-push
   image: plugins/docker
   settings:
     registry: registry.hayl.in
@@ -40,8 +21,6 @@ steps:
     - COMMIT=${DRONE_COMMIT_SHA}
     - REF=${DRONE_COMMIT_REF}
     - TIME=${DRONE_BUILD_STARTED}
-    cache_from:
-      - "registry.hayl.in/www-cache:${DRONE_BRANCH}"
 - name: rollout
   image: haylinmoore/drone-rollout-restart:latest
   pull: always

@@ -5,12 +5,10 @@ COPY Cargo.toml Cargo.toml
 COPY Cargo.lock Cargo.lock
 RUN cargo chef prepare --recipe-path recipe.json
 
-FROM lukemathwalker/cargo-chef:0.1.67-rust-alpine3.19 AS www-cache
+FROM lukemathwalker/cargo-chef:0.1.67-rust-alpine3.19 AS builder
 WORKDIR /app
 COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --target x86_64-unknown-linux-musl --recipe-path recipe.json
-
-FROM www-cache AS builder
 COPY src/ src/
 COPY Cargo.toml Cargo.toml
 COPY Cargo.lock Cargo.lock
