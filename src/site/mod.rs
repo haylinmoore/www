@@ -52,7 +52,6 @@ pub fn base(
 
                     meta property="og:type" content="website";
                     meta property="og:title" content=(title);
-                    meta property="og:description" content=(state.name.uppercase_full_str());
                     meta property="og:theme-color" content="#19191e";
                 }
 
