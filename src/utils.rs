@@ -1,4 +1,3 @@
-use anyhow::Error;
 use markdown::{to_html_with_options, CompileOptions, Options};
 
 pub fn md_to_html(md: &str) -> String {
