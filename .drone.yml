@@ -1,36 +1,69 @@
----
 kind: pipeline
 type: docker
-name: build-and-push
+name: build-and-deploy
 
 steps:
-- name: build-and-push
-  image: plugins/docker
-  settings:
-    registry: registry.hayl.in
-    repo: registry.hayl.in/www
-    tags:
-      - latest
-      - ${DRONE_COMMIT_SHA:0:8}
-    dockerfile: Dockerfile
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-    build_args:
-    - COMMIT=${DRONE_COMMIT_SHA}
-    - REF=${DRONE_COMMIT_REF}
-    - TIME=${DRONE_BUILD_STARTED}
-- name: rollout
-  image: haylinmoore/drone-rollout-restart:latest
-  pull: always
-  settings:
-    deployment: haylinmoore
-    namespace: default
-    kubernetes_server:
-      from_secret: kubernetes_server # Pulling these from secrets isn't required, but strongly encouraged
-    kubernetes_token:
-      from_secret: kubernetes_token
+  - name: restore-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: target
+        path: /target
+      - name: cargo
+        path: /cargo
+    settings:
+      restore: true
+      ttl: 21  
+      mount:
+        - ./target
+        - /usr/local/cargo
+
+  - name: build
+    image: rust:alpine
+    commands:
+      - cargo build --release --target x86_64-unknown-linux-musl --verbose
+
+  - name: build-and-push-docker
+    image: plugins/docker
+    settings:
+      registry: registry.hayl.in
+      repo: registry.hayl.in/www
+      tags:
+        - latest
+        - ${DRONE_COMMIT_SHA:0:8}
+      dockerfile: Dockerfile
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      build_args:
+        - COMMIT=${DRONE_COMMIT_SHA}
+        - REF=${DRONE_COMMIT_REF}
+        - TIME=${DRONE_BUILD_STARTED}
+
+  - name: rebuild-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: target
+        path: /target
+      - name: cargo
+        path: /cargo
+    settings:
+      rebuild: true
+      mount:
+        - ./target
+        - /usr/local/cargo
+
+  - name: rollout
+    image: haylinmoore/drone-rollout-restart:latest
+    pull: always
+    settings:
+      deployment: haylinmoore
+      namespace: default
+      kubernetes_server:
+        from_secret: kubernetes_server
+      kubernetes_token:
+        from_secret: kubernetes_token
+
 trigger:
   branch:
     - main
