@@ -6,16 +6,13 @@ steps:
   - name: restore-cache
     image: drillster/drone-volume-cache
     volumes:
-      - name: target
-        path: /target
-      - name: cargo
-        path: /cargo
+      - name: cache
+        path: /cache
     settings:
       restore: true
       mount:
         - ./target
         - /usr/local/cargo
-
   - name: build
     image: rust:1-slim-bookworm
     commands:
@@ -42,12 +39,11 @@ steps:
   - name: rebuild-cache
     image: drillster/drone-volume-cache
     volumes:
-      - name: target
-        path: /target
-      - name: cargo
-        path: /cargo
+      - name: cache
+        path: /cache
     settings:
       rebuild: true
+      ttl: 21
       mount:
         - ./target
         - /usr/local/cargo
@@ -62,6 +58,11 @@ steps:
         from_secret: kubernetes_server
       kubernetes_token:
         from_secret: kubernetes_token
+
+volumes:
+  - name: cache
+    host:
+      path: /tmp/cache
 
 trigger:
   branch:
