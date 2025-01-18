@@ -66,6 +66,7 @@ pub struct SiteState {
     sitemap: Vec<u8>,
     badges: Vec<badges::Badge>,
     webring: Option<webring::MemberGetResponse>,
+    build_info: utils::BuildInfo,
 }
 
 #[tokio::main]
@@ -86,6 +87,7 @@ async fn main() {
         sitemap: vec![],
         badges: vec![],
         webring: None,
+        build_info: utils::build_info(),
     };
 
     state.webring = webring::get_webring_link().await;

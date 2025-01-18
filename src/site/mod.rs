@@ -19,18 +19,7 @@ pub fn base(
 ) -> Markup {
     let title = format!("{} | {}", context.title, state.name.uppercase_full_str());
 
-    let commit = if let Ok(commit) = std::env::var("COMMIT") {
-        commit.chars().take(8).collect()
-    } else {
-        String::from("Unknown")
-    };
-
-    let build_info = format!(
-        "{} {}:{}",
-        std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")),
-        std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")),
-        commit
-    );
+    let build_info = state.build_info.clone();
 
     html! {
         (maud::DOCTYPE)
@@ -71,7 +60,6 @@ pub fn base(
                                     }
                                 }
                             }
-
                             p {
                                 @if let Some(webring) = &state.webring {
                                     a href=(webring.prev.url) { (webring.prev.name) } (" <- ")
@@ -86,7 +74,10 @@ pub fn base(
                                 br;
                                 "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
                                 br;
-                                (build_info)
+                                (build_info.time) (" ")
+                                a target="_blank" href=(format!("https://github.com/haylinmoore/www/commit/{}", build_info.commit)) {
+                                    (build_info.branch) ":" (build_info.commit)
+                                }
                                 br;
                             }
                         }
