@@ -21,6 +21,9 @@ steps:
     - COMMIT=${DRONE_COMMIT_SHA}
     - REF=${DRONE_COMMIT_REF}
     - TIME=${DRONE_BUILD_STARTED}
+    cache_from:
+      - "registry.hayl.in/www-cache:master"
+      - "registry.hayl.in/www-cache:${DRONE_BRANCH}"
 - name: rollout
   image: haylinmoore/drone-rollout-restart:latest
   pull: always
