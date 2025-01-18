@@ -1,4 +1,4 @@
-FROM alpine
+FROM debian:bookworm-slim
 
 ENV TZ="America/New_York"
 ARG REF=""
@@ -9,7 +9,7 @@ ENV COMMIT=${COMMIT}
 ENV REF=${REF}
 ENV TIME=${TIME}
 
-COPY target/x86_64-unknown-linux-musl/release/www /usr/local/bin/
+COPY target/release/www /usr/local/bin/
 COPY ./assets /usr/local/bin/assets
 COPY ./content /usr/local/bin/content
 

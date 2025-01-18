@@ -12,15 +12,14 @@ steps:
         path: /cargo
     settings:
       restore: true
-      ttl: 21  
       mount:
         - ./target
         - /usr/local/cargo
 
   - name: build
-    image: rust:alpine
+    image: rust:1-slim-bookworm
     commands:
-      - cargo build --release --target x86_64-unknown-linux-musl --verbose
+      - cargo build --release --verbose
 
   - name: build-and-push-docker
     image: plugins/docker
