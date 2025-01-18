@@ -31,11 +31,11 @@ async fn health(State(state): State<Arc<RwLock<SiteState>>>) -> Markup {
     html! {
        "Ok"
         br;
-        "Build Info: " (std::env::var("TIME").unwrap_or_else(|_| String::from("Unknown")))
+        "Build Info: " state.build_info.time
         br;
-        "Ref: " (std::env::var("REF").unwrap_or_else(|_| String::from("Unknown")))
+        "Ref: " state.build_info.branch
         br;
-        "Commit: " (std::env::var("COMMIT").unwrap_or_else(|_| String::from("Unknown")))
+        "Commit: " state.build_info.commit
         br;
         "Last Updated: " (state.last_updated)
         br;
