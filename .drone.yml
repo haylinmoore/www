@@ -13,8 +13,10 @@ steps:
       mount:
         - ./target
         - /usr/local/cargo
-  - name: build
-    image: rust:1-slim-bookworm
+  - name: cache bookworm image
+    image: debian:bookworm-slim
+  - name: build www
+    image: rust:1.84-slim-bookworm
     commands:
       - cargo build --release --verbose
 
