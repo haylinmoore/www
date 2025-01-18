@@ -13,8 +13,17 @@ steps:
       mount:
         - ./target
         - /usr/local/cargo
+        - ./.image-cache
+
   - name: cache bookworm image
     image: debian:bookworm-slim
+
+  - name: optimize-images
+    image: haylinmoore/drone-image-optimizer:latest
+    settings:
+      cache_dir: /drone/src/.image-cache
+      source_dir: /drone/src/assets
+
   - name: build www
     image: rust:1.84-slim-bookworm
     commands:
@@ -49,6 +58,7 @@ steps:
       mount:
         - ./target
         - /usr/local/cargo
+        - ./.image-cache
 
   - name: rollout
     image: haylinmoore/drone-rollout-restart:latest
