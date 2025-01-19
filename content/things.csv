@@ -20,3 +20,5 @@ date,link,title,description
 2024-01-21,https://88x31.hayl.in/,88x31,Sprite based GIF generation library
 2024-06-04,https://github.com/haylinmoore/dublinbikes,Collect usage metric from Dublin Bike Rental
 2024-09-05,https://github.com/haylinmoore/obsidian-online-todo-sync,Pull Obsidian Todo Tasks from websources
+2024-12-21,https://github.com/haylinmoore/dollpublish,Doll Publish,Moon-Server implementation allowing for self-hosted Obsidian Publish
+2025-01-15,https://github.com/haylinmoore/drone-rollout-restart,drone-rollout-restart,fork that adds x86 support and uses upstream kubectl
