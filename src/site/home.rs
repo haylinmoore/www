@@ -29,10 +29,8 @@ pub async fn home(
                 h1 { (state.name.uppercase_full_str()) }
                 p {
                     "I'm a software and network engineer from the east coast. I currently work at "
-                    a target="_blank" href="https://qumulo.com" { "Qumulo" } " doing system integration and debugging networks. "
-                    "Previously, I worked at " a target="_blank" href="https://arista.com" { "Arista Networks" } " doing similar things. "
-                    br {}
-                    "let the packets flow - we could all use more whimsy - live laugh love it all"
+                    a target="_blank" href="https://qumulo.com" { "Qumulo" } " doing inteligent load balancing, debugging networks, and thinking a lot about nix. "
+                    "Previously, I worked at " a target="_blank" href="https://arista.com" { "Arista Networks" } " doing network automation, large scale digital-twin network validation, and routing for SMPTE2110 networks. "
                 }
             }
             div class="pure-u-1 pure-u-md-1-3 hero-img" {
