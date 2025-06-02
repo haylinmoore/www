@@ -12,7 +12,7 @@ pkgs.rustPlatform.buildRustPackage rec {
     image_optim
   ];
 
-  installPhase = ''
+  postInstall = ''
     mkdir -p $out/assets
     mkdir -p $out/content
     cp -r ./assets/* $out/assets/
