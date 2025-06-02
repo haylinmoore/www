@@ -129,7 +129,8 @@ async fn main() {
         .with_state(state)
         .layer(middleware::from_fn(middleware_apply_client_state));
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    let bind = std::env::var("BIND").unwrap_or_else(|_| String::from("0.0.0.0:3000"));
+    let listener = tokio::net::TcpListener::bind(bind).await.unwrap();
 
     println!("Listening on: {}", listener.local_addr().unwrap());
 
