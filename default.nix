@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.rustPlatform.buildRustPackage rec {
+pkgs.rustPlatform.buildRustPackage {
   pname = "www";
   version = "0.1.0";
 
@@ -18,8 +18,7 @@ pkgs.rustPlatform.buildRustPackage rec {
     cp -r ./assets/* $out/assets/
 
     image_optim -r $out/assets/
-  
+
     cp -r ./content/* $out/content/
   '';
 }
-

@@ -74,7 +74,6 @@ pub fn base(
                                 br;
                                 "All opinions here are my own and do not reflect the views of my employers or university: future, past, and present."
                                 br;
-                                (build_info.time) (" ")
                                 a target="_blank" href=(format!("https://github.com/haylinmoore/www/commit/{}", build_info.commit)) {
                                     (build_info.branch) ":" (build_info.commit)
                                 }
