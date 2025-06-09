@@ -24,3 +24,4 @@ date,link,title,description
 2025-01-15,https://github.com/haylinmoore/drone-rollout-restart,drone-rollout-restart,fork that adds x86 support and uses upstream kubectl
 2025-01-19,https://github.com/haylinmoore/drone-image-optimizer,drone-image-optimizer,a CI step for optimizing and caching optimized images
 2025-03-09,https://github.com/haylinmoore/example-nix-plugin,example-nix-plugin,an example nix plugin for adding custom builtins
+2025-05-29,https://github.com/haylinmoore/bloomcraft,bloomcraft,a custom substring search server for infinibrowser
